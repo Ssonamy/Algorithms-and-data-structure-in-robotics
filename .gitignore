@@ -30,3 +30,38 @@
 *.exe
 *.out
 *.app
+
+# VS user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code workspace settings
+.vscode/
+
+# Backup & temporary files
+*~
+*.log
+*.tmp
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Other build systems
+build/
+out/
+
+# Visual Studio project files (optional, если проект автогенерируется)
+*.VC.db
+*.VC.opendb
+
+# Windows system files
+Thumbs.db
+Desktop.ini
+
+# Crash dumps
+*.dmp
