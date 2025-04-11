@@ -36,6 +36,7 @@
 *.suo
 *.userosscache
 *.sln.docstates
+.vs/
 
 # VS Code workspace settings
 .vscode/
