@@ -4,18 +4,31 @@
 using namespace std;
 
 bool isInt(string x) {
-	bool flag;
 	try {
 		int value = stoi(x);
-		return flag = true;
+		return true;
 	}
 	catch (...) {
-		return flag = false;
+		return false;
 	}
 }
 
 int stringToInt(string x) {
-	if (isInt(x)) {
-		return stoi(x);
+	return stoi(x);
+}
+
+int autoInput()
+{
+	while (true) {
+		string input;
+		int output;
+
+		cout << "¬ведите: ";
+		cin >> input;
+		if (!isInt(input)) {
+			cout << "¬ведите корректное число.\n";
+			continue;
+		}
+		return output = stringToInt(input);
 	}
 }
