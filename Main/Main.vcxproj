@@ -129,6 +129,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="functions.cpp" />
+    <ClCompile Include="LR0.cpp" />
+    <ClCompile Include="LR1.cpp" />
+    <ClCompile Include="LR2.cpp" />
+    <ClCompile Include="LR3.cpp" />
+    <ClCompile Include="LR4.cpp" />
+    <ClCompile Include="LR5.cpp" />
+    <ClCompile Include="LR6.cpp" />
+    <ClCompile Include="LR7.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
