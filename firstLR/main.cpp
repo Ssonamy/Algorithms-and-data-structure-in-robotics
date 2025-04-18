@@ -9,8 +9,12 @@ using namespace std;
 
 int main() 
 {
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+	SetConsoleCP(CP_UTF8);
+	//SetConsoleCP(1251);
+	SetConsoleOutputCP(CP_UTF8);
+	//SetConsoleOutputCP(1251);
+	
+
 	string input;
 	int forSwitch;
 
@@ -34,12 +38,13 @@ int main()
 			firstLR();
 			break;
 
-		//case 2:
-		// Продолжение следует...
-		//	cout << "second is also successful\n";
-
 		case 0:
 			cout << "Выход...\n";
+			return 0;
+
+		case -1351:
+			cin >> input;
+			cout << input << endl << endl;
 			return 0;
 
 		default:
