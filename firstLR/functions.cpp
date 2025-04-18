@@ -23,10 +23,10 @@ int autoInput()
 		string input;
 		int output;
 
-		cout << "Ââåäèòå: ";
+		cout << "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ: ";
 		cin >> input;
 		if (!isInt(input)) {
-			cout << "Ââåäèòå êîğğåêòíîå ÷èñëî.\n";
+			cout << "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ ĞºĞ¾Ñ€Ñ€ĞµĞºÑ‚Ğ½Ğ¾Ğµ Ñ‡Ğ¸ÑĞ»Ğ¾.\n";
 			continue;
 		}
 		return output = stringToInt(input);
