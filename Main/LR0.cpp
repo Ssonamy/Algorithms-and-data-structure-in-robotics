@@ -2,6 +2,8 @@
 #include <windows.h> //Для изменения кодировки Windows 
 #include <string>
 #include <cmath>
+#include "functions.h"
+
 using namespace std;
 
 void name() {
@@ -9,25 +11,24 @@ void name() {
 	std::cout << "Введите свое имя : ...\n"; //Вывод на экран
 	cin >> name;
 	std::cout << "Привет, " << name << "!\n";
-}
+} // Функция ввода и вывода имени 
 
 void arithmetic() {
 
 	float a, b;
-	string c, d;
+	string input;
 
 	// Ввод первого числа
 	while (true) {
 
 		std::cout << "Введите первое число: ";
-		cin >> c;
+		cin >> input;
 
-		try {
-			a = stof(c); // Конвертируем строку в число
-			break; // Если ввод корректный, выходим из цикла
+		if (isInt(input)) {
+			a = stringToInt(input);
 		}
-		catch (...) {
-			std::cout << "Ошибка: Введите корректное числовое значение.\n";
+		else {
+			cout << "Некорректное значение.\n";
 		}
 	}
 
@@ -35,14 +36,13 @@ void arithmetic() {
 	while (true) {
 
 		std::cout << "Введите второе число: ";
-		cin >> d;
+		cin >> input;
 
-		try {
-			b = stof(d); // Конвертируем строку в число
-			break; // Если ввод корректный, выходим из цикла
+		if (isInt(input)) {
+			b = stringToInt(input);
 		}
-		catch (...) {
-			std::cout << "Ошибка: Введите корректное числовое значение.\n";
+		else {
+			cout << "Некорректное значение.\n";
 		}
 	}
 
@@ -58,7 +58,7 @@ void arithmetic() {
 	else {
 		std::cout << "Ошибка: деление на ноль невозможно.\n";
 	}
-}
+} // Нахождение всех возможных случаев вычислений а и б 
 
 void equation() {
 	float b, c;
@@ -73,7 +73,7 @@ void equation() {
 			break;
 		}
 		catch (...) {
-			std::cout << "Ошибка: Введите корректное числовое значение.\n";
+			std::cout << "Некорректное значение.\n";
 		}
 	}
 
@@ -86,7 +86,7 @@ void equation() {
 			break;
 		}
 		catch (...) {
-			std::cout << "Ошибка: Введите корректное числовое значение.\n";
+			std::cout << "Некорректное значение.\n";
 		}
 	}
 	if (b != 0) {
@@ -112,7 +112,7 @@ void oneMoreEquation() {
 			break;
 		}
 		catch (...) {
-			std::cout << "Ошибка: Введите корректное числовое значение.\n";
+			std::cout << "Некорректное значение\n";
 		}
 	}
 
@@ -125,7 +125,7 @@ void oneMoreEquation() {
 			break;
 		}
 		catch (...) {
-			std::cout << "Ошибка: Введите корректное числовое значение.\n";
+			std::cout << "Некорректное значение\n";
 		}
 	}
 
@@ -138,7 +138,7 @@ void oneMoreEquation() {
 			break;
 		}
 		catch (...) {
-			std::cout << "Ошибка: Введите корректное числовое значение.\n";
+			std::cout << "Некорректное значение\n";
 		}
 	}
 
@@ -182,10 +182,10 @@ void lampWithCurtain() {
 	}
 
 	while (true) {
-		std::cout << "Задёрнуты ли шторы?\n"; //Проверка закрыты ли шторы
+		std::cout << "Задёрнуты ли шторы? (да/нет)\n"; //Проверка закрыты ли шторы
 		cin >> c;
-		if ((c == "Да") or (c == "да") or (c == "Д") or (c == "д") or (c == "Нет") or (c == "нет") or (c == "Н") or (c == "н")) {
-			if ((c == "Да") or (c == "да") or (c == "Д") or (c == "д")) {
+		if ((c == "да") or (c == "нет")) {
+			if ((c == "да")) {
 				curtainsCondition = 1;
 			}
 			else {
@@ -194,15 +194,15 @@ void lampWithCurtain() {
 			break;
 		}
 		else {
-			std::cout << "Введите Да/Нет\n";
+			std::cout << "Некорректное значение.\n";
 		}
 	}
 
 	while (true) {
-		std::cout << "Лампа включена?\n"; //Проверка включена ли лампа
+		std::cout << "Лампа включена? (да/нет)\n"; //Проверка включена ли лампа
 		cin >> l;
-		if ((l == "Да") or (l == "да") or (l == "Д") or (l == "д") or (l == "Нет") or (l == "нет") or (l == "Н") or (l == "н")) {
-			if ((l == "Да") or (l == "да") or (l == "Д") or (l == "д")) {
+		if ((l == "да") or (l == "нет")) {
+			if ((l == "да")) {
 				lampCondition = 1;
 			}
 			else {
@@ -211,7 +211,7 @@ void lampWithCurtain() {
 			break;
 		}
 		else {
-			std::cout << "Введите Да/Нет\n";
+			std::cout << "Некорректное значение.\n";
 		}
 	}
 
@@ -223,107 +223,64 @@ void lampWithCurtain() {
 	}
 }
 
-int forSwitch(string input) {
-
-	int newInput;
-	try {
-		return newInput = stoi(input);
-	}
-	catch (...) {
-		if (input == "Имя") {
-			return newInput = 1;
-		}
-		else if (input == "Арифметика") {
-			return newInput = 2;
-		}
-		else if (input == "Уравнение") {
-			return newInput = 3;
-		}
-		else if (input == "Ещё уравнение") {
-			return newInput = 4;
-		}
-		else if (input == "Лампа со шторой") {
-			return newInput = 5;
-		}
-		else if ((input == "help") or (input == "?")) {
-			return newInput = 6;
-		}
-		else if (input == "exit") {
-			return newInput = 0;
-		}
-		else {
-			return newInput = 7;
-		}
-	}
-
-}
-
 int ZeroLaba()
 {
 	SetConsoleOutputCP(1251); //Позволяет выводить консоли русский текст адекватно
 	SetConsoleCP(1251); //Делает ввод с клавиатуры на русском адекватным 
-	std::cout << "Добро пожаловать в набор программ нулевой лабораторной! \nДля обращения к функциям наберите порядковый номер задачи или укажите её название.\n";
+	std::cout << "Добро пожаловать в набор программ нулевой лабораторной!\n";
 
 
 	while (true) {
-		string input;
-		int* newInput = new int;
+		cout << "Введите:\n";
+		cout << "1. 'Имя'\n";
+		cout << "2. 'Арифметика'\n";
+		cout << "3. 'Уравнение'\n";
+		cout << "4. 'Еще уравнение'\n";
+		cout << "5. 'Лампа со шторой'\n";
+		cout << "6. Справка \n";
+		cout << "0. Выход.\n";
 
 
-		getline(cin, input);
-		*newInput = forSwitch(input);
-		switch (*newInput) {
+		int forSwitch = autoInput();
+
+		switch (forSwitch) {
 		case 0:
 			std::cout << "Выход из программы...";
 			return 0;
+
 		case 1: // Первая функция
 			std::cout << "Вы вызвали функцию 'Имя'\n";
 			name();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите '?' или 'help'.\nДля выхода напишите 'exit'. \n";
 			break;
+
 		case 2: // Вторая функция
 			std::cout << "Вы вызвали функцию 'Арифметика'\n";
 			arithmetic();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите '?' или 'help'.\nДля выхода напишите 'exit'. \n";
 			break;
+
 		case 3: // Третья функция
 			std::cout << "Вы вызвали функцию 'Уравнение'\n";
 			equation();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите '?' или 'help'.\nДля выхода напишите 'exit'. \n";
 			break;
+
 		case 4: // Четвертая функция
 			std::cout << "Вы вызвали функцию 'Ещё Уравнение'\n";
 			oneMoreEquation();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите '?' или 'help'.\nДля выхода напишите 'exit'. \n";
 			break;
+
 		case 5: // Пятая функция
 			std::cout << "Вы вызвали функцию 'Лампа со шторой\n'";
 			lampWithCurtain();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите '?' или 'help'.\nДля выхода напишите 'exit'. \n";
 			break;
+
 		case 6: // Помощь
 			std::cout << "Справка: \nФункция 'Имя' запрашивает Ваше имя, затем приветствует Вас. \nФункция 'Арифметика' запрашивает на ввод два числа, затем выводит сумму, разность, произведение и, если возможно частное.";
 			std::cout << "Функция 'Уравнение' запрашивает на ввод два числа, b и c, затем находит x в уравнении bx + c = 0. \nФункция 'Ещё уравнение' запрашивает на ввод три числа, a, b, c, затем, находит корни уравнения ax^2 + bx + c = 0.";
 			std::cout << "Функция 'Лампа со шторой' спрашивает день ли на улице, закрыты ли шторы, включена ли лампа, после чего отвечает на вопрос светло ли в комнате\n";
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите '?' или 'help'.\nДля выхода напишите 'exit'. \n";
 			break;
-		case 7:
-			std::cout << "Введите корректную команду.\n";
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите '?' или 'help'.\nДля выхода напишите 'exit'. \n";
+
+		default:
+			std::cout << "Некорректное значение.\n\n";
 			break;
 		}
 	}

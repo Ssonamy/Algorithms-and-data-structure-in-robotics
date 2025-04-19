@@ -2,38 +2,8 @@
 #include <windows.h>
 #include <string>
 #include <vector>
+#include "functions.h"
 using namespace std;
-
-//Определение целочисленности числа
-bool isInt(string x) {
-	bool e;
-	try {
-		int num = stoi(x);
-		return e = 1;
-	}
-	catch (...) {
-		return e = 0;
-	}
-
-} // функция, определяющая является ли ввод числом 
-
-//Перевод из строки в число
-int INTj() {
-	while (true) {
-		string number;
-		int num;
-
-		cout << "Введите число:" << endl;
-		cin >> number;
-		if (isInt(number)) {
-			return num = stoi(number);
-			break;
-		}
-		else {
-			cout << "Ошибка: Введите корректное числовое значение.\n";
-		}
-	}
-}
 
 void del(vector<int>& vec, int num) {
 	for (int i = 1; i < sqrt(num); i++) {
@@ -56,7 +26,7 @@ int fibobnachi(int destination) {
 }
 
 //Нахождение факториала числа
-void factorial() {
+void factorial5() {
 	int num;
 	while (true) {
 		string number;
@@ -76,7 +46,7 @@ void factorial() {
 			}
 		}
 		else {
-			cout << "Ошибка: Введите корректное числовое значение.\n";
+			cout << "Некорректное значение\n";
 		}
 	}
 
@@ -95,12 +65,12 @@ void NOD() {
 	vector<int> delB;
 
 	//Ввод первого числа
-	a = INTj();
+	a =autoInput();
 	//Создание массива делителей первого числа
 	del(delA, a);
 
 	//Ввод второго числа
-	b = INTj();
+	b =autoInput();
 	//Создание массива делителей второго числа
 	del(delB, b);
 
@@ -116,9 +86,8 @@ void NOD() {
 }
 
 //Проверка числа на простоту
-void isPrime() {
-	int num;
-	num = INTj();
+void isPrime5() {
+	int num =autoInput();
 	bool isprime = 1;
 
 	if (num > 0) {
@@ -143,12 +112,10 @@ void isPrime() {
 					break;
 				}
 			}
-			if (isprime) {
+			if (isprime) 
 				cout << "Число является простым." << endl;
-			}
-			else {
+			else 
 				cout << "Число не является простым." << endl;
-			}
 		}
 	}
 }
@@ -177,7 +144,7 @@ void palindrome() {
 void fibonacciNumbers() {
 	int destination;
 	cout << "Введите до какого числа будет вычисляться ряд" << endl;
-	destination = INTj();
+	destination =autoInput();
 	cout << "Последовательность Фибоначчи: ";
 	for (int i = 0; i < destination; i++) {
 		cout << fibobnachi(i) << " ";
@@ -186,7 +153,7 @@ void fibonacciNumbers() {
 }
 
 //Вызов справки
-void hepl() {
+void hepl5() {
 	cout << "Список команд:" << endl;
 	cout << "1. Факториал -- запрашивает у пользователя на ввод число, после чего выводит факториал этого числа" << endl;
 	cout << "2. Наибольший общий делитель -- запрашивает на ввод пользователя два целых числа, затем выводит наибольший общий делитель двух этих чисел." << endl;
@@ -196,110 +163,60 @@ void hepl() {
 	cout << "6. Помощь -- вызывает этот список." << endl;
 }
 
-//Перевод команд в числа, для работы переключателя в мэйне
-int forSwitch(string input) {
-	int num;
-	if (isInt(input)) {
-		num = stoi(input);
-		return num;
-	}
-	else {
-		if (input == "Факториал") {
-			return 1;
-		}
-		else if (input == "НОД" || input == "Наибольший общий делитель") {
-			return 2;
-		}
-		else if (input == "Простое число") {
-			return 3;
-		}
-		else if (input == "Палиндром") {
-			return 4;
-		}
-		else if (input == "Ряд Фибоначи") {
-			return 5;
-		}
-		else if (input == "Помощь") {
-			return 6;
-		}
-		else if (input == "Выход") {
-			return 0;
-		}
-		else if (input == "") {
-			return -1;
-		}
-	}
-
-	return num = 6;
-}
-
 int FifthLaba()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	cout << "Вы запустили сборник функций лабораторной №5.\nДля обращения к функциям наберите порядковый номер задачи или укажите её название.\nДля вызова справки введите 'Помощь'.\nДля выхода введите 'Выход'." << endl;
+	cout << "Вы запустили сборник функций лабораторной номер 5." << endl;
+	cout << "Введите:" << endl;
+	cout << "1. 'Факториал'" << endl;
+	cout << "2. 'Наибольший общий делитель'" << endl;
+	cout << "3. 'Простое число'" << endl;
+	cout << "4. 'Палиндром'" << endl;
+	cout << "5. 'Ряд Фибоначи'" << endl;
+	cout << "6. Справка" << endl;
+	cout << "0. Выход" << endl;
 
 	while (true) {
 
-		string input;
-		int* newInput = new int;
-		getline(cin, input);
-		*newInput = forSwitch(input);
-
-		switch (*newInput) {
-		case -1:
-			continue;
+		int forSwitch = autoInput();
+		switch (forSwitch) {
 		case 0:
 			cout << "Выход из программы...";
 			return 0;
+
 		case 1:
 			cout << "Факториал" << endl;
-			factorial();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
+			factorial5();
 			break;
+
 		case 2:
 			cout << "Наибольший общий делитель" << endl;
 			NOD();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
 			break;
+
 		case 3:
 			cout << "Простое число" << endl;
-			isPrime();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
+			isPrime5();
 			break;
+
 		case 4:
 			cout << "Палиндром" << endl;
 			palindrome();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
 			break;
+
 		case 5:
 			cout << "Ряд Фибоначи" << endl;
 			fibonacciNumbers();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
 			break;
+
 		case 6:
-			cout << "Помощь" << endl;
-			hepl();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
+			cout << "Справка" << endl;
+			hepl5();
 			break;
 
 		default:
 			cout << "Введите корректную команду.\n";
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
 			break;
 		}
 	}

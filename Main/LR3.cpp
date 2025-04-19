@@ -2,19 +2,9 @@
 #include <windows.h>
 #include <string>
 #include <cmath>
+#include "functions.h"
+
 using namespace std;
-
-bool isInt(string x) {
-	bool e;
-	try {
-		int num = stoi(x);
-		return e = 1;
-	}
-	catch (...) {
-		return e = 0;
-	}
-
-} // функция, определяющая является ли ввод числом 
 
 void multiplication() {
 	int num;
@@ -28,7 +18,7 @@ void multiplication() {
 			break;
 		}
 		else {
-			cout << "Ошибка: Введите корректное числовое значение.\n";
+			cout << "Некорректное значение.\n";
 		}
 	}
 	cout << "Таблица умножения числа " << num << ".\n";
@@ -38,7 +28,7 @@ void multiplication() {
 	}
 }
 
-void sum() {
+void sum3() {
 	int num;
 	while (true) {
 		string number;
@@ -50,7 +40,7 @@ void sum() {
 			break;
 		}
 		else {
-			cout << "Ошибка: Введите корректное числовое значение.\n";
+			cout << "Некорректное значение\n";
 		}
 	}
 	int s = 0;
@@ -60,7 +50,7 @@ void sum() {
 	cout << "Сумма чисел от 1 до " << num << " = " << s << endl;
 }
 
-void isPrime() {
+void isPrime3() {
 	int num;
 	while (true) {
 		string number;
@@ -77,7 +67,7 @@ void isPrime() {
 			}
 		}
 		else {
-			cout << "Ошибка: Введите корректное числовое значение.\n";
+			cout << "Некорректное значение\n";
 		}
 	}
 	switch (num) {
@@ -103,7 +93,7 @@ void isPrime() {
 	}
 }
 
-void factorial() {
+void factorial3() {
 	int num;
 	while (true) {
 		string number;
@@ -123,7 +113,7 @@ void factorial() {
 			}
 		}
 		else {
-			cout << "Ошибка: Введите корректное числовое значение.\n";
+			cout << "Некорректное значение\n";
 		}
 	}
 
@@ -135,7 +125,7 @@ void factorial() {
 	cout << "Факториал " << num << " = " << s << endl;
 }
 
-void hepl() {
+void hepl3() {
 	cout << "Список команд:\n1. Таблица умножения -- при вводе числа пользователем, функция выводит число умноженное на числа от 1 до 10." << endl;
 	cout << "2. Сумма -- при вводе числа пользователем, функция выводит сумму всех чисел от 1 до N, где N -- ввод пользователя." << endl;
 	cout << "3. Простое число -- при вводе числа пользователем, функция выводит, является ли число простым." << endl;
@@ -143,89 +133,49 @@ void hepl() {
 	cout << "5. Помощь -- " << endl;
 }
 
-int forSwitch(string input) {
-	int num;
-	if (isInt(input)) {
-		return num = stoi(input);
-	}
-	else {
-		if (input == "Умножение") {
-			return num = 1;
-		}
-		else if (input == "Сумма") {
-			return num = 2;
-		}
-		else if (input == "Простое") {
-			return num = 3;
-		}
-		else if (input == "Факториал") {
-			return num = 4;
-		}
-		else if (input == "Помощь") {
-			return num = 5;
-		}
-		else if (input == "Выход") {
-			return num = 0;
-		}
-	}
-}
-
 int ThirdLaba() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	cout << "Вы запустили сборник функций лабораторной №2.\nДля обращения к функциям наберите порядковый номер задачи или укажите её название.\nДля вызова справки введите 'Помощь'.\nДля выхода введите 'Выход'." << endl;
 	while (true) {
 
-		string input;
-		int* newInput = new int;
-		getline(cin, input);
-		*newInput = forSwitch(input);
+		cout << "Вы запустили сборник функций лабораторной номер 3." << endl;
+		cout << "Введите:" << endl;
+		cout << "1. 'Таблица умножения'" << endl;
+		cout << "2. 'Сумма'" << endl;
+		cout << "3. 'Простое число'" << endl;
+		cout << "4. 'Факториал'" << endl;
+		cout << "5. Спарвка" << endl;
+		cout << "0. Выход." << endl;
 
-		switch (*newInput) {
+		int forSwitch = autoInput();
+
+		switch (forSwitch) {
 		case 0:
 			cout << "Выход из программы...";
 			return 0;
 		case 1:
 			cout << "Таблица умножения" << endl;
 			multiplication();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
 			break;
 		case 2:
 			cout << "Сумма" << endl;
-			sum();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
+			sum3();
 			break;
 		case 3:
 			cout << "Простое число" << endl;
-			isPrime();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
+			isPrime3();
 			break;
 		case 4:
 			cout << "Факториал" << endl;
-			factorial();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
+			factorial3();
 			break;
 		case 5:
-			cout << "Помощь" << endl;
-			hepl();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
+			cout << "Справка" << endl;
+			hepl3();
 			break;
 
 		default:
 			cout << "Введите корректную команду.\n";
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
 			break;
 		}
 

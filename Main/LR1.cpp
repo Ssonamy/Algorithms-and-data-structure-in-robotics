@@ -7,7 +7,6 @@
 
 using namespace std;
 
-
 // Простой поиск
 void simpleSearch() {
 	string forVec, input;
@@ -116,7 +115,7 @@ void bubbleSort() {
 }
 
 // Функция, осуществляющая слияние
-void merge(vector<int>& arr, int left, int mid, int right) {
+void mmerge1(vector<int>& arr, int left, int mid, int right) {
 	int n1 = mid - left + 1; // Размер левого подмассива
 	int n2 = right - mid;    // Размер правого подмассива
 
@@ -162,12 +161,12 @@ void mergeSor(vector<int>& arr, int left, int right) {
 		mergeSor(arr, mid + 1, right);
 
 		// Сливаем отсортированные половины
-		merge(arr, left, mid, right);
+		mmerge1(arr, left, mid, right);
 	}
 }
 
 // Функция, ввод массива, сортировка
-void mergeSort() {
+void mergeSo() {
 
 	string forVec;
 	vector<int> vec;
@@ -225,7 +224,7 @@ void binSearc() {
 }
 
 // Список функций
-void hepl() {
+void hepl1() {
 	std::cout << "Список команд:";
 	std::cout << "1. Простой поиск -- Пользователь вводит массив чисел, после вводит искомое число." << endl;
 	std::cout << "2. Двоичный поиска -- Пользователь вводит массив чисел, после вводит искомое число." << endl;
@@ -234,102 +233,51 @@ void hepl() {
 	std::cout << "5. Помощь -- вызывает список команд (вы здесь)." << endl;
 }
 
-// Преобразование названий функций в команды.
-int forSwitch(string input) {
-	int num;
-	if (isInt(input)) {
-		num = stoi(input);
-		return num;
-	}
-	else {
-		if (input == "Простой поиск") {
-			return 1;
-		}
-		else if (input == "Двоичный поиск") {
-			return 2;
-		}
-		else if (input == "Сортировка пузырьком") {
-			return 3;
-		}
-		else if (input == "Сортировка слиянием") {
-			return 4;
-		}
-		else if (input == "Помощь") {
-			return 5;
-		}
-		else if (input == "Выход") {
-			return 0;
-		}
-		else if (input == "") {
-			return -1;
-		}
-	}
-
-	return 6;
-}
-
-
 int FirstLaba()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-
-	std::cout << "Вы запустили сборник функций лабораторной №1.\nДля обращения к функциям наберите порядковый номер задачи или укажите её название.\nДля вызова справки введите 'Помощь'.\nДля выхода введите 'Выход'." << endl;
 	while (true) {
 
-		string input;
-		int* newInput = new int;
-		getline(cin, input);
-		*newInput = forSwitch(input);
+		std::cout << "Вы запустили сборник функций лабораторной номер 1. " << endl;
+		std::cout << "Введите " << endl;
+		std::cout << "1. Простой поиск" << endl;
+		std::cout << "2. Бинарный поиск" << endl;
+		std::cout << "3. Сортировка пузырьком" << endl;
+		std::cout << "4. Сортировка слиянием" << endl;
+		std::cout << "5. Справка" << endl;
+		std::cout << "0. Выход" << endl;
 
-		switch (*newInput) {
-		case -1:
-			continue; // Внезапно решение проблемы 0_0
+		int forSwitch = autoInput(); 
+
+		switch (forSwitch) {
 		case 0:
 			std::cout << "Выход из программы...";
 			return 0;
 		case 1:
 			std::cout << "Простой поиск" << endl;
 			simpleSearch();
-			delete newInput;
-			newInput = nullptr;
-			std::cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
 			break;
 		case 2:
 			std::cout << "Бинарный поиск" << endl;
 			binSearc();
-			delete newInput;
-			newInput = nullptr;
-			std::cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
 			break;
 		case 3:
 			std::cout << "Сортировка пузырьком" << endl;
 			bubbleSort();
-			delete newInput;
-			newInput = nullptr;
-			std::cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
 			break;
 		case 4:
 			std::cout << "Сортировка слиянием" << endl;
-			mergeSort();
-			delete newInput;
-			newInput = nullptr;
-			std::cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
+			mergeSo();
 			break;
 		case 5:
-			std::cout << "Помощь" << endl;
-			hepl();
-			delete newInput;
-			newInput = nullptr;
-			std::cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
+			std::cout << "Справка" << endl;
+			hepl1();
 			break;
 
 		default:
-			std::cout << "Введите корректную команду.\n";
-			delete newInput;
-			newInput = nullptr;
-			std::cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
+			std::cout << "Некорректное значение.\n";
 			break;
 		}
 	}

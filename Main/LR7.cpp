@@ -4,13 +4,8 @@
 #include <vector>							//Для записи оценок студента
 #include <sstream>							//Для ввода в массив
 #include <numeric>							//Для нахождения суммы оценок
+#include "functions.h"
 using namespace std;						//Чтобы не писать "std::"
-
-//Переменные для вызова функций (см ForSwitch)
-string first = "Студент";
-string second = "Библиотека";
-string help = "Помощь";
-string EXIT = "Выход";
 
 class Student {
 private:
@@ -140,17 +135,6 @@ public:
 		}
 	}
 };
-
-//Проверка является ли строка числом
-bool isInt(string input) {
-	try {
-		int n = stoi(input);
-		return true;
-	}
-	catch (...) {
-		return false;
-	}
-}
 
 //Перевод из строки в число
 int toInt(string input = "") {
@@ -339,27 +323,6 @@ void library() {
 	} while (input != 0);
 }
 
-//Функция перевода команд в цифры
-int forSwitch(string input) {
-	if (isInt(input)) {
-		return toInt(input);
-	}
-	else {
-		if (input == first) {
-			return 1;
-		}
-		else if (input == second) {
-			return 2;
-		}
-		else if (input == help) {
-			return 3;
-		}
-		else if (input == EXIT) {
-			return 0;
-		}
-	}
-}
-
 //Список команд
 void list() {
 	cout << "__________________________________________________________________________________\n";
@@ -378,18 +341,20 @@ int SeventhLaba() {
 	//Приветствие?
 	cout << "__________________________________________________________________________________\n";
 	cout << "Вы запустили сборник функций лабораторной №7.\n";
-	cout << "Для обращения к функциям наберите порядковый номер задачи или укажите её название.\n";
-	cout << "Для вызова справки введите 'Помощь'.\nДля выхода введите 'Выход'.\n";
-	cout << "__________________________________________________________________________________\n";
 
 	//Бесконечный цикл для выбора команд
-	while (true) {
-		cout << "Ваш выбор: ";
-		string input;
-		cin >> input;
-		cout << endl;
+	while (true){
+		cout << "__________________________________________________________________________________\n";
+		cout << "Введите:\n";
+		cout << "1. 'Студент'.\n";
+		cout << "2. 'Библиотека'.\n";
+		cout << "3. Справка.\n";
+		cout << "0. Выход.\n";
+		cout << "__________________________________________________________________________________\n";
 
-		switch (forSwitch(input)) {
+		cout << "Введите\n";
+		int forSwitch = autoInput();
+		switch (forSwitch) {
 
 		case 0:
 			cout << "Выход из программы.";
@@ -406,7 +371,7 @@ int SeventhLaba() {
 			list();
 			break;
 		default:
-			cout << "Введите корректное значение. Для вызова справки введите 'Помощь'." << endl;
+			cout << "Введите корректное значение." << endl;
 		}
 	}
 

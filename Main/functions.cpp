@@ -32,3 +32,4 @@ int autoInput()
 		return output = stringToInt(input);
 	}
 }
+

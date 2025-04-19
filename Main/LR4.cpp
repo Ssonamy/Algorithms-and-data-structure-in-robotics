@@ -3,36 +3,9 @@
 #include <vector>
 #include <sstream>
 #include <string>
+#include "functions.h"
+
 using namespace std;
-
-bool isInt(string x) {
-	bool e;
-	try {
-		int num = stoi(x);
-		return e = 1;
-	}
-	catch (...) {
-		return e = 0;
-	}
-
-} // функция, определяющая является ли ввод числом 
-
-int INTj() {
-	while (true) {
-		string number;
-		int num;
-
-		cout << "Введите число:" << endl;
-		cin >> number;
-		if (isInt(number)) {
-			return num = stoi(number);
-			break;
-		}
-		else {
-			cout << "Ошибка: Введите корректное числовое значение.\n";
-		}
-	}
-}
 
 void arrayElements() {
 	string input;
@@ -67,7 +40,7 @@ void arrayElements() {
 	cout << endl;
 }
 
-void sum() {
+void sum4() {
 	string input;
 	int* arr = nullptr;
 	int size = 0;
@@ -105,12 +78,12 @@ void transposition() {
 	int rows, cols;
 
 	cout << "Введите количество строк" << endl;
-	rows = INTj();
+	rows =autoInput();
 
 	int** matrix = new int* [rows];
 
 	cout << "Введите количество столбцов" << endl;
-	cols = INTj();
+	cols =autoInput();
 	for (int i = 0; i < rows; i++) {
 		matrix[i] = new int[cols];
 	}
@@ -218,7 +191,7 @@ void dotProduct() {
 
 }
 
-void hepl() {
+void hepl4() {
 	cout << "Список команд:\n1. Элементы массива -- запрашивает на ввод пользователя массив целых чисел, которые впоследствии записывает в массив и выводит его." << endl;
 	cout << "2. Сумма -- запрашивает на ввод пользователя массив целых чисел, которые впоследствии записывает в массив и выводит сумму его элементов." << endl;
 	cout << "3. Транспонирование -- запрашивает на ввод количество строк и столбцов матрицы, после чего пользователь вводит элементы матрицы, которую функция транспонирует." << endl;
@@ -226,93 +199,53 @@ void hepl() {
 	cout << "5. Помощь -- " << endl;
 }
 
-int forSwitch(string input) {
-	int num;
-	if (isInt(input)) {
-		num = stoi(input);
-		return num;
-	}
-	else {
-		if (input == "Элементы массива") {
-			return 1;
-		}
-		else if (input == "Сумма") {
-			return 2;
-		}
-		else if (input == "Транспонирование") {
-			return 3;
-		}
-		else if (input == "Скалярное произведение") {
-			return 4;
-		}
-		else if (input == "Помощь") {
-			return 5;
-		}
-		else if (input == "Выход") {
-			return 0;
-		}
-	}
-
-	return num = 6;
-}
-
 int FourhtLaba()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	cout << "Вы запустили сборник функций лабораторной №3.\nДля обращения к функциям наберите порядковый номер задачи или укажите её название.\nДля вызова справки введите 'Помощь'.\nДля выхода введите 'Выход'." << endl;
+	cout << "Вы запустили сборник функций лабораторной номер 4." << endl;
+	cout << "Введите:" << endl;
+	cout << "1.'Элементы массива'" << endl;
+	cout << "2.'Сумма'" << endl;
+	cout << "3.'Транспонирование'" << endl;
+	cout << "4.'Скалярное произведение'" << endl;
+	cout << "5. Справка" << endl;
+	cout << "0. Выход" << endl;
 	while (true) {
 
-		string input;
-		int* newInput = new int;
-		getline(cin, input);
-		*newInput = forSwitch(input);
-
-		switch (*newInput) {
+		int forSwitch = autoInput();
+		switch (forSwitch) {
 		case 0:
 			cout << "Выход из программы...";
 			return 0;
+
 		case 1:
 			cout << "Элементы массива" << endl;
 			arrayElements();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
 			break;
+
 		case 2:
 			cout << "Сумма" << endl;
-			sum();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
+			sum4();
 			break;
+
 		case 3:
 			cout << "Транспонирование" << endl;
 			transposition();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
 			break;
+
 		case 4:
 			cout << "Скалярное произведение" << endl;
 			dotProduct();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
 			break;
+
 		case 5:
-			cout << "Помощь" << endl;
-			hepl();
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
+			cout << "Справка" << endl;
+			hepl4();
 			break;
 
 		default:
 			cout << "Введите корректную команду.\n";
-			delete newInput;
-			newInput = nullptr;
-			cout << "Для вызова справки наберите 'Помощь'.\nДля выхода напишите 'Выход'. \n";
 			break;
 		}
 	}

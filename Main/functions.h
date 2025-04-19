@@ -6,6 +6,8 @@ bool isInt(string x);
 
 int stringToInt(string x);
 
+int inputInt();
+
 int autoInput();
 
 int ZeroLaba();
