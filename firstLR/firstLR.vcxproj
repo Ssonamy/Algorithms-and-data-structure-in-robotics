@@ -24,6 +24,7 @@
     <ProjectGuid>{e72ddd3d-a456-4cad-b109-b00f8d4a35fc}</ProjectGuid>
     <RootNamespace>firstLR</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>robotics</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
