@@ -1,0 +1,15 @@
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\bin\Debug\net8.0\ConsoleHighLevel.exe
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\bin\Debug\net8.0\ConsoleHighLevel.deps.json
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\bin\Debug\net8.0\ConsoleHighLevel.runtimeconfig.json
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\bin\Debug\net8.0\ConsoleHighLevel.dll
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\bin\Debug\net8.0\ConsoleHighLevel.pdb
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0\ConsoleHighLevel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0\ConsoleHighLevel.AssemblyInfoInputs.cache
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0\ConsoleHighLevel.AssemblyInfo.cs
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0\ConsoleHighLevel.csproj.CoreCompileInputs.cache
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0\ConsoleHighLevel.sourcelink.json
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0\ConsoleHighLevel.dll
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0\refint\ConsoleHighLevel.dll
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0\ConsoleHighLevel.pdb
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0\ConsoleHighLevel.genruntimeconfig.cache
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0\ref\ConsoleHighLevel.dll

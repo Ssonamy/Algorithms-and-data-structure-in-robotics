@@ -1,0 +1,156 @@
+﻿Console.WriteLine("Добро пожаловать в сборник программ по дисциплине\n" +
+    "Программирование и алгоритмизация на языках высокого уровня\n");
+
+string choice;
+
+while (true)
+{
+    bool cycle = true;
+    Console.WriteLine(
+    "---------------\n" +
+    "Введите:\n" +
+    "1. Лабораторные работы\n" +
+    "2. Практические работы\n" +
+    "0. Выход\n" +
+    "---------------\n");
+
+    Console.Write("Введите: ");
+
+    choice = Console.ReadLine();
+
+    switch (choice)
+    {
+        case "1":
+            while (cycle)
+            {
+                Console.WriteLine(
+                "---------------\n" +
+                "Лабораторные работы:\n" +
+                "1. 'Разработка консольных приложений на C#' \n" +
+                "2. 'Применение циклических алгоритмов' \n" +
+                "3. \n" +
+                "4. \n" +
+                "5. \n" +
+                "6. \n" +
+                "0. Назад\n" +
+                "-1. Выход \n" +
+                "---------------\n");
+                Console.Write("Введите: ");
+                choice = Console.ReadLine();
+                switch (choice)
+                {
+                    case "1":
+                        Console.Write("\n");
+                        firstLaboratory.main();
+                        break;
+
+                    case "2":
+                        Console.Write("\n");
+
+                        break;
+
+                    case "3":
+                        Console.Write("\n");
+
+                        break;
+
+                    case "4":
+                        Console.Write("\n");
+
+                        break;
+
+                    case "5":
+                        Console.Write("\n");
+
+                        break;
+
+                    case "6":
+                        Console.Write("\n");
+
+                        break;
+
+                    case "0":
+                        cycle = false;
+                        break;
+
+                    case "-1":
+                        return 0;
+
+                    default:
+                        Console.WriteLine("Некорректное значение.");
+                        break;
+
+                }
+            }
+            break;
+
+        case "2":
+            while (cycle)
+            {
+                Console.WriteLine(
+                "---------------\n" +
+                "Практические работы:\n" +
+                "1. 'Калькулятор'\n" +
+                "2. \n" +
+                "3. \n" +
+                "4. \n" +
+                "5. \n" +
+                "6. \n" +
+                "0. Назад\n" +
+                "-1. Выход \n" +
+                "---------------\n");
+                Console.Write("Введите: ");
+                choice = Console.ReadLine();
+                switch (choice)
+                {
+                    case "1":
+                        Console.Write("\n");
+                        firstPractical.CalculatorCs();
+                        break;
+
+                    case "2":
+                        Console.Write("\n");
+
+                        break;
+
+                    case "3":
+                        Console.Write("\n");
+
+                        break;
+
+                    case "4":
+                        Console.Write("\n");
+
+                        break;
+
+                    case "5":
+                        Console.Write("\n");
+
+                        break;
+
+                    case "6":
+                        Console.Write("\n");
+
+                        break;
+
+                    case "0":
+                        cycle = false;
+                        break;
+
+                    case "-1":
+                        return 0;
+
+                    default:
+                        Console.WriteLine("Некорректное значение.");
+                        break;
+                }
+            }
+            break;
+
+        case "0":
+            return 0;
+    }
+}
+
+
+
