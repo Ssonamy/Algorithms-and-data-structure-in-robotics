@@ -237,7 +237,6 @@ int SixthLaba() {
 				cout << "0. Выход\n";
 				cout << "Ваш выбор: ";
 				choice = autoInput();
-				cin.ignore(); // Убираем остаток символов из буфера
 
 				switch (choice) {
 				case 1:

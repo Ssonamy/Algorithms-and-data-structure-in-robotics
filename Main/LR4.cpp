@@ -249,4 +249,5 @@ int FourhtLaba()
 			break;
 		}
 	}
+	return 0;
 }

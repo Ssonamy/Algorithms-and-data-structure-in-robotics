@@ -10,7 +10,7 @@ void name() {
 	string name;
 	std::cout << "Введите свое имя : ...\n"; //Вывод на экран
 	cin >> name;
-	std::cout << "Привет, " << name << "!\n";
+	std::cout << endl << "Привет, " << name << "!\n";
 } // Функция ввода и вывода имени 
 
 void arithmetic() {
@@ -21,11 +21,12 @@ void arithmetic() {
 	// Ввод первого числа
 	while (true) {
 
-		std::cout << "Введите первое число: ";
+		std::cout << endl << "Введите первое число: ";
 		cin >> input;
 
 		if (isInt(input)) {
 			a = stringToInt(input);
+			break;
 		}
 		else {
 			cout << "Некорректное значение.\n";
@@ -40,6 +41,7 @@ void arithmetic() {
 
 		if (isInt(input)) {
 			b = stringToInt(input);
+			break;
 		}
 		else {
 			cout << "Некорректное значение.\n";
@@ -47,7 +49,7 @@ void arithmetic() {
 	}
 
 	// Вывод результатов
-	std::cout << "Результат сложения: " << a + b << ";\n";
+	std::cout << endl << "Результат сложения: " << a + b << ";\n";
 	std::cout << "Результат вычитания: " << a - b << ";\n";
 	std::cout << "Результат умножения: " << a * b << ";\n";
 
@@ -66,7 +68,7 @@ void equation() {
 
 	// Ввод b
 	while (true) {
-		std::cout << "Введите 'b':";
+		std::cout << "Введите 'b': ";
 		cin >> initialB;
 		try {
 			b = stof(initialB);
@@ -79,7 +81,7 @@ void equation() {
 
 	// Ввод c
 	while (true) {
-		std::cout << "Введите 'c':";
+		std::cout << endl << "Введите 'c': ";
 		cin >> initialC;
 		try {
 			c = stof(initialC);
@@ -90,7 +92,7 @@ void equation() {
 		}
 	}
 	if (b != 0) {
-		std::cout << "x = " << -c / b;
+		std::cout << "x = " << -c / b << endl;
 	}
 	else {
 		std::cout << "х невозможно определить.\n";
@@ -105,7 +107,7 @@ void oneMoreEquation() {
 
 	// Ввод а
 	while (true) {
-		std::cout << "Введите 'a':";
+		std::cout << "Введите 'a': ";
 		cin >> initialA;
 		try {
 			a = stof(initialA);
@@ -118,7 +120,7 @@ void oneMoreEquation() {
 
 	// Ввод b
 	while (true) {
-		std::cout << "Введите 'b':";
+		std::cout << "Введите 'b': ";
 		cin >> initialB;
 		try {
 			b = stof(initialB);
@@ -131,7 +133,7 @@ void oneMoreEquation() {
 
 	// Ввод c
 	while (true) {
-		std::cout << "Введите 'c':";
+		std::cout << "Введите 'c': ";
 		cin >> initialC;
 		try {
 			c = stof(initialC);
@@ -144,17 +146,17 @@ void oneMoreEquation() {
 
 	d = pow(b, 2) - 4 * a * c;
 	if (d < 0) {
-		std::cout << "Нет рациональных корней.\n";
+		std::cout << endl << "Нет рациональных корней.\n";
 	}
 	else {
 		x1 = (-b + sqrt(d)) / 2 * a;
 		x2 = (-b - sqrt(d)) / 2 * a;
 		if (x1 == x2) {
-			std::cout << "Оба корня равны: " << x1 << endl;
+			std::cout << endl << "Оба корня равны: " << x1 << endl;
 		}
 		else {
-			std::cout << "Первый корень равен: " << x1 << endl;
-			std::cout << "Второй корень равен: " << x2 << endl;
+			std::cout << endl << "Первый корень равен: " << x1 << endl;
+			std::cout << endl << "Второй корень равен: " << x2 << endl;
 		}
 	}
 
@@ -165,10 +167,10 @@ void lampWithCurtain() {
 	string d, c, l;
 
 	while (true) {
-		std::cout << "На улице день? \n"; //Проверка, день ли на улице
+		std::cout << endl << "На улице день? (да/нет) \n"; //Проверка, день ли на улице
 		cin >> d;
-		if ((d == "Да") or (d == "да") or (d == "Д") or (d == "д") or (d == "Нет") or (d == "нет") or (d == "Н") or (d == "н")) {
-			if ((d == "Да") or (d == "да") or (d == "Д") or (d == "д")) {
+		if ((d == "да")(d == "нет")) {
+			if ((d == "да")) {
 				isDay = 1;
 			}
 			else {
@@ -177,12 +179,12 @@ void lampWithCurtain() {
 			break;
 		}
 		else {
-			std::cout << "Введите Да/Нет\n";
+			std::cout << endl << "Введите Да/Нет\n";
 		}
 	}
 
 	while (true) {
-		std::cout << "Задёрнуты ли шторы? (да/нет)\n"; //Проверка закрыты ли шторы
+		std::cout << endl << "Задёрнуты ли шторы? (да/нет) \n"; //Проверка закрыты ли шторы
 		cin >> c;
 		if ((c == "да") or (c == "нет")) {
 			if ((c == "да")) {
@@ -199,7 +201,7 @@ void lampWithCurtain() {
 	}
 
 	while (true) {
-		std::cout << "Лампа включена? (да/нет)\n"; //Проверка включена ли лампа
+		std::cout << endl << "Лампа включена? (да/нет)\n"; //Проверка включена ли лампа
 		cin >> l;
 		if ((l == "да") or (l == "нет")) {
 			if ((l == "да")) {
@@ -216,10 +218,10 @@ void lampWithCurtain() {
 	}
 
 	if ((isDay == 1 and curtainsCondition == 0) or lampCondition == 1) {
-		std::cout << "В комнате светло!\n";
+		std::cout << endl << "В комнате светло!\n";
 	}
 	else {
-		std::cout << "В комнате темно\n";
+		std::cout << endl << "В комнате темно\n";
 	}
 }
 
@@ -236,51 +238,69 @@ int ZeroLaba()
 		cout << "2. 'Арифметика'\n";
 		cout << "3. 'Уравнение'\n";
 		cout << "4. 'Еще уравнение'\n";
-		cout << "5. 'Лампа со шторой'\n";
+		cout << "5. 'Лампа со шторой' \n";
 		cout << "6. Справка \n";
-		cout << "0. Выход.\n";
+		cout << "0. Выход.\n" << endl;
 
 
 		int forSwitch = autoInput();
 
 		switch (forSwitch) {
 		case 0:
+			cout << endl;
 			std::cout << "Выход из программы...";
 			return 0;
 
 		case 1: // Первая функция
+			cout << endl;
 			std::cout << "Вы вызвали функцию 'Имя'\n";
 			name();
+			cout << endl;
 			break;
 
 		case 2: // Вторая функция
+			cout << endl;
 			std::cout << "Вы вызвали функцию 'Арифметика'\n";
-			arithmetic();
+			arithmetic();		
+			cout << endl;
 			break;
 
 		case 3: // Третья функция
+			cout << endl;
 			std::cout << "Вы вызвали функцию 'Уравнение'\n";
 			equation();
+			cout << endl;
+
 			break;
 
 		case 4: // Четвертая функция
+			cout << endl;
 			std::cout << "Вы вызвали функцию 'Ещё Уравнение'\n";
 			oneMoreEquation();
+			cout << endl;
+
 			break;
 
 		case 5: // Пятая функция
+			cout << endl;
 			std::cout << "Вы вызвали функцию 'Лампа со шторой\n'";
 			lampWithCurtain();
+			cout << endl;
+
 			break;
 
 		case 6: // Помощь
+			cout << endl;
+
 			std::cout << "Справка: \nФункция 'Имя' запрашивает Ваше имя, затем приветствует Вас. \nФункция 'Арифметика' запрашивает на ввод два числа, затем выводит сумму, разность, произведение и, если возможно частное.";
 			std::cout << "Функция 'Уравнение' запрашивает на ввод два числа, b и c, затем находит x в уравнении bx + c = 0. \nФункция 'Ещё уравнение' запрашивает на ввод три числа, a, b, c, затем, находит корни уравнения ax^2 + bx + c = 0.";
 			std::cout << "Функция 'Лампа со шторой' спрашивает день ли на улице, закрыты ли шторы, включена ли лампа, после чего отвечает на вопрос светло ли в комнате\n";
+			cout << endl;
+
 			break;
 
 		default:
-			std::cout << "Некорректное значение.\n\n";
+			std::cout << endl << "Некорректное значение.\n\n";
 			break;
 		}
 	}

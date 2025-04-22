@@ -18,7 +18,7 @@ int SecondLaba();
 
 int ThirdLaba();
 
-int FourthLaba();
+int FourhtLaba();
 
 int FifthLaba();
 
