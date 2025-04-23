@@ -1,6 +1,7 @@
-﻿using System.Windows.Forms;
+﻿//using System.Windows.Forms;
 using SecondPractik;
 using calcWInForms;
+using ThirdPractik;
 
 namespace HighLevel
 {
@@ -104,7 +105,7 @@ namespace HighLevel
                             "1. 'Калькулятор'\n" +
                             "2. 'Калькулятор (с графическим интерфейсом)'\n" +
                             "2.1 'Веб-обозреватель'\n" +
-                            "3. \n" +
+                            "3. 'Двумерный массив'\n" +
                             "4. \n" +
                             "5. \n" +
                             "6. \n" +
@@ -137,7 +138,10 @@ namespace HighLevel
 
                                 case "3":
                                     Console.Write("\n");
+                                    Application.EnableVisualStyles();
+                                    Application.SetCompatibleTextRenderingDefault(false);
 
+                                    Application.Run(new ThirdPractical());
                                     break;
 
                                 case "4":

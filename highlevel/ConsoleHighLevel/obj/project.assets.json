@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\levsa\\source\\repos\\Ssonamy\\all-within-the-framework-of-studies\\highlevel\\highlevel\\ConsoleHighLevel\\ConsoleHighLevel.csproj",
-      "projectName": "ConsoleHighLevel",
-      "projectPath": "C:\\Users\\levsa\\source\\repos\\Ssonamy\\all-within-the-framework-of-studies\\highlevel\\highlevel\\ConsoleHighLevel\\ConsoleHighLevel.csproj",
+      "projectUniqueName": "C:\\Users\\levsa\\source\\repos\\Ssonamy\\all-within-the-framework-of-studies\\highlevel\\highlevel\\ConsoleHighLevel\\HighLevel.csproj",
+      "projectName": "HighLevel",
+      "projectPath": "C:\\Users\\levsa\\source\\repos\\Ssonamy\\all-within-the-framework-of-studies\\highlevel\\highlevel\\ConsoleHighLevel\\HighLevel.csproj",
       "packagesPath": "C:\\Users\\levsa\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\levsa\\source\\repos\\Ssonamy\\all-within-the-framework-of-studies\\highlevel\\highlevel\\ConsoleHighLevel\\obj\\",
       "projectStyle": "PackageReference",
