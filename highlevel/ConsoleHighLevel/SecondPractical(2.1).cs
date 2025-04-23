@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SecondPractik
 {
-    public partial class Form1 : Form
+    public partial class SecondPractical21 : Form
     {
-        public Form1()
+        public SecondPractical21()
         {
             InitializeComponent();
         }

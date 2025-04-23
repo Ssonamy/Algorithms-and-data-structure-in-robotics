@@ -3,7 +3,6 @@ C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highleve
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\bin\Debug\net8.0-windows\ConsoleHighLevel.runtimeconfig.json
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\bin\Debug\net8.0-windows\ConsoleHighLevel.dll
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\bin\Debug\net8.0-windows\ConsoleHighLevel.pdb
-C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\SecondPractik.Form1.resources
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\ConsoleHighLevel.csproj.GenerateResource.cache
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\ConsoleHighLevel.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\ConsoleHighLevel.AssemblyInfoInputs.cache
@@ -15,3 +14,5 @@ C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highleve
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\ConsoleHighLevel.pdb
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\ConsoleHighLevel.genruntimeconfig.cache
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\ref\ConsoleHighLevel.dll
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\SecondPractik.SecondPractical21.resources
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\calcWInForms.Calc.resources

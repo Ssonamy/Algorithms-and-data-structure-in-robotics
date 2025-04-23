@@ -1,6 +1,6 @@
 ﻿namespace SecondPractik
 {
-    partial class Form1
+    partial class SecondPractical21
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -110,7 +110,7 @@
             this.webBrowser1.Size = new System.Drawing.Size(775, 382);
             this.webBrowser1.TabIndex = 3;
             // 
-            // Form1
+            // SecondPractical21
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -120,7 +120,7 @@
             this.Controls.Add(this.goButton);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "SecondPractical21";
             this.Text = "Web Browser";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);

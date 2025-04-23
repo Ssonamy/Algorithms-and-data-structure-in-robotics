@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using SecondPractik;
+using calcWInForms;
 
 namespace HighLevel
 {
@@ -121,15 +122,17 @@ namespace HighLevel
 
                                 case "2":
                                     Console.Write("\n");
+                                    Application.EnableVisualStyles();
+                                    Application.SetCompatibleTextRenderingDefault(false);
 
+                                    Application.Run(new Calc());
                                     break;
                                 case "2.1":
                                     Console.Write("\n");
                                     Application.EnableVisualStyles();
                                     Application.SetCompatibleTextRenderingDefault(false);
 
-                                    // Запуск формы из другого проекта
-                                    Application.Run(new Form1());
+                                    Application.Run(new SecondPractical21());
                                     break;
 
                                 case "3":
