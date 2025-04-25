@@ -131,6 +131,7 @@
     <ClCompile Include="firstLR.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="secondLR.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h" />

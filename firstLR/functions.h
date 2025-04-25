@@ -9,3 +9,5 @@ int stringToInt(string x);
 int firstLR();
 
 int autoInput();
+
+int secondLR();

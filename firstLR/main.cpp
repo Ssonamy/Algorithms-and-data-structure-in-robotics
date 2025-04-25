@@ -38,6 +38,10 @@ int main()
 			firstLR();
 			break;
 
+		case 2:
+			secondLR();
+			break;
+
 		case 0:
 			cout << "Выход...\n";
 			return 0;
