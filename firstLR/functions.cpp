@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <windows.h>
+
 
 using namespace std;
 
@@ -19,6 +21,9 @@ int stringToInt(string x) {
 
 int autoInput()
 {
+	SetConsoleCP(CP_UTF8);
+	SetConsoleOutputCP(CP_UTF8);
+
 	while (true) {
 		string input;
 		int output;
