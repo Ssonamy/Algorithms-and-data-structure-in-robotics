@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <windows.h>
 #include <vector>
 #include <sstream>
@@ -87,8 +87,8 @@ long long measureTime(Func sortFunction, vector<int> arr) {
 
 int firstLR()
 {
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+	SetConsoleCP(CP_UTF8);
+	SetConsoleOutputCP(CP_UTF8);
 	srand(time(nullptr)); // Инициализация генератора случайных чисел
 
 	vector<int> sizes = { 100, 1000, 10000 }; // Размеры массивов

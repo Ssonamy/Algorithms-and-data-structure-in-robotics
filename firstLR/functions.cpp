@@ -23,6 +23,9 @@ int autoInput()
 {
 	SetConsoleCP(CP_UTF8);
 	SetConsoleOutputCP(CP_UTF8);
+	//SetConsoleCP(1251);
+	//SetConsoleOutputCP(1251);
+	//setlocale(LC_ALL, "Russian");
 
 	while (true) {
 		string input;
