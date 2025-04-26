@@ -1,124 +1,130 @@
-#include <iostream>
-#include <string>
-#include <stdexcept>
-#include <cassert>
-#include <ctime>
-#include <iomanip>
+#include <iostream>   // для cout
+#include <string>     // для string
+#include <iomanip>    // для форматирования вывода даты
+#include <chrono>     // для времени
+#include <sstream>    // для строкового потока
+#include <windows.h>
+
+using namespace std;
+
+// ===================================
+// Класс File
+// ===================================
 
 class File {
 private:
-    std::string name;
-    std::string extension;
-    int size; // в байтах
-    std::tm creationDate;
+    string name;          // имя файла
+    string extension;     // расширение файла
+    int size;             // размер файла в байтах
+
+    // Дата создания файла (используем chrono для хранения времени)
+    chrono::system_clock::time_point creationDate;
 
 public:
-    // Конструктор по умолчанию
-    File() : name("Untitled"), extension("txt"), size(0) {
-        std::time_t t = std::time(nullptr);
-        creationDate = *std::localtime(&t);
+    // -----------------------------------
+    // Конструктор для инициализации полей
+    // -----------------------------------
+    File(string name, string extension, int size)
+    {
+        this->name = name;
+        this->extension = extension;
+        this->size = size;
+        this->creationDate = chrono::system_clock::now(); // дата создания — текущий момент
     }
 
-    // Конструктор инициализации
-    File(const std::string& name, const std::string& extension, int size, const std::tm& creationDate)
-        : name(name), extension(extension), size(size), creationDate(creationDate) {
-        if (size < 0)
-            throw std::invalid_argument("Размер файла не может быть отрицательным");
-    }
-
-    // Конструктор копирования
-    File(const File& other)
-        : name(other.name), extension(other.extension), size(other.size), creationDate(other.creationDate) {
-    }
-
-    // Геттеры
-    std::string getName() const { return name; }
-    std::string getExtension() const { return extension; }
-    int getSize() const { return size; }
-    std::tm getCreationDate() const { return creationDate; }
-
-    // Сеттеры
-    void setName(const std::string& newName) { name = newName; }
-    void setExtension(const std::string& newExtension) { extension = newExtension; }
-    void setSize(int newSize) {
-        if (newSize < 0)
-            throw std::invalid_argument("Размер не может быть отрицательным");
-        size = newSize;
-    }
-
-    void setCreationDate(const std::tm& newDate) { creationDate = newDate; }
-
-    // Метод для получения полного имени файла
-    std::string getFullName() const {
+    // -----------------------------------
+    // Метод для получения полного имени файла (имя + точка + расширение)
+    // -----------------------------------
+    string getFullName()
+    {
         return name + "." + extension;
     }
 
-    // Размер в килобайтах
-    double getSizeInKB() const {
-        return size / 1024.0;
+    // -----------------------------------
+    // Метод для получения размера файла в килобайтах
+    // -----------------------------------
+    double getSizeInKB()
+    {
+        return size / 1024.0; // перевод из байтов в килобайты
     }
 
-    // Размер в мегабайтах
-    double getSizeInMB() const {
-        return size / (1024.0 * 1024);
+    // -----------------------------------
+    // Метод для получения размера файла в мегабайтах
+    // -----------------------------------
+    double getSizeInMB()
+    {
+        return size / (1024.0 * 1024.0); // перевод из байтов в мегабайты
     }
 
-    // Метод для печати информации о файле
-    void printFileInfo() const {
-        std::cout << "Имя файла: " << name << "\n"
-            << "Расширение: " << extension << "\n"
-            << "Размер: " << size << " байт\n"
-            << "Дата создания: " << std::put_time(&creationDate, "%d.%m.%Y %H:%M:%S") << "\n";
-    }
-
-    // Метод для изменения расширения
-    void changeExtension(const std::string& newExtension) {
+    // -----------------------------------
+    // Метод для изменения расширения файла
+    // -----------------------------------
+    void changeExtension(string newExtension)
+    {
         extension = newExtension;
+    }
+
+    // -----------------------------------
+    // Метод для вывода информации о файле
+    // -----------------------------------
+    void printFileInfo()
+    {
+        cout << "Имя файла: " << getFullName() << endl;
+        cout << "Размер файла: " << size << " байт" << endl;
+        cout << "Размер файла: " << getSizeInKB() << " КБ" << endl;
+        cout << "Размер файла: " << getSizeInMB() << " МБ" << endl;
+        cout << "Дата создания: " << formatCreationDate() << endl;
+    }
+
+private:
+    // -----------------------------------
+    // Вспомогательный метод для форматирования даты создания
+    // -----------------------------------
+    string formatCreationDate() const
+    {
+        // Преобразуем дату создания в системное время
+        time_t creationTimeT = chrono::system_clock::to_time_t(creationDate);
+
+        // Структура времени
+        tm tm{};
+#ifdef _WIN32
+        localtime_s(&tm, &creationTimeT); // безопасная версия для Windows
+#else
+        localtime_r(&creationTimeT, &tm); // безопасная версия для Linux/Unix
+#endif
+
+        // Строковый поток для форматирования
+        ostringstream oss;
+        oss << put_time(&tm, "%Y-%m-%d %H:%M:%S"); // формат: год-месяц-день часы:минуты:секунды
+        return oss.str();
     }
 };
 
-// Тесты
-void runTests() {
-    std::time_t t = std::time(nullptr);
-    std::tm now = *std::localtime(&t);
+// ===================================
+// Главная функция
+// ===================================
 
-    // Тест конструктора инициализации
-    File f1("doc", "pdf", 2048, now);
-    assert(f1.getFullName() == "doc.pdf");
-    assert(f1.getSize() == 2048);
-    assert(f1.getSizeInKB() == 2.0);
+int secondLR()
+{
+    SetConsoleCP(1251);
+    //SetConsoleCP(CP_UTF8);
+    //SetConsoleOutputCP(CP_UTF8);
+    SetConsoleOutputCP(1251);
+     
+    
+    // Создаем объект файла
+    File myFile("example", "txt", 2048);
 
-    // Тест конструктора по умолчанию
-    File f2;
-    assert(f2.getExtension() == "txt");
-
-    // Тест конструктора копирования
-    File f3 = f1;
-    assert(f3.getName() == "doc");
-
-    // Тест исключений
-    try {
-        File badFile("fail", "exe", -500, now);
-        assert(false); // не должно дойти до сюда
-    }
-    catch (const std::invalid_argument&) {
-        assert(true); // исключение поймано
-    }
-
-    // Тест изменения расширения
-    f1.changeExtension("docx");
-    assert(f1.getExtension() == "docx");
-
-    std::cout << "Тесты пройдены успешно.\n";
-}
-
-int secondLR() {
-    runTests();
-
-    std::time_t t = std::time(nullptr);
-    std::tm now = *std::localtime(&t);
-
-    File myFile("report", "txt", 4096, now);
+    // Выводим информацию о файле
     myFile.printFileInfo();
+
+    cout << endl;
+
+    // Меняем расширение файла
+    myFile.changeExtension("log");
+
+    // Снова выводим информацию о файле
+    myFile.printFileInfo();
+
     return 0;
 }
