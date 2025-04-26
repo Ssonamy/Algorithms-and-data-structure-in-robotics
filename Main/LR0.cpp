@@ -129,7 +129,7 @@ void oneMoreEquation() {
 		catch (...) {
 			std::cout << "Некорректное значение\n";
 		}
-	
+	}
 
 	// Ввод c
 	while (true) {
@@ -159,8 +159,8 @@ void oneMoreEquation() {
 			std::cout << endl << "Второй корень равен: " << x2 << endl;
 		}
 	}
-
 }
+
 
 void lampWithCurtain() {
 	bool isDay, curtainsCondition, lampCondition;
@@ -169,7 +169,7 @@ void lampWithCurtain() {
 	while (true) {
 		std::cout << endl << "На улице день? (да/нет) \n"; //Проверка, день ли на улице
 		cin >> d;
-		if ((d == "да")(d == "нет")) {
+		if ((d == "да") || (d == "нет")) {
 			if ((d == "да")) {
 				isDay = 1;
 			}

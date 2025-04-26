@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <windows.h>
 #include <vector>
 #include <sstream>
@@ -9,10 +9,10 @@ using namespace std;
 
 int main()
 {
-	//SetConsoleCP(CP_UTF8);
-	SetConsoleCP(1251);
-	//SetConsoleOutputCP(CP_UTF8);
-	SetConsoleOutputCP(1251);
+	SetConsoleCP(CP_UTF8);
+	//SetConsoleCP(1251);
+	SetConsoleOutputCP(CP_UTF8);
+	//SetConsoleOutputCP(1251);
 
 
 	string input;
