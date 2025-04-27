@@ -50,6 +50,7 @@ int main()
 			return 0;
 
 		case -1351:
+			std::cout << __cplusplus << std::endl;
 			cin >> input;
 			cout << input << endl << endl;
 			return 0;

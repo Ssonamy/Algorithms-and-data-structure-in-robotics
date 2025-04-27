@@ -23,9 +23,9 @@ private:
     chrono::system_clock::time_point creationDate;
 
 public:
-    // -----------------------------------
-    // Конструктор для инициализации полей
-    // -----------------------------------
+     //-----------------------------------
+     //Конструктор для инициализации полей
+     //-----------------------------------
     File(string name, string extension, int size)
     {
         this->name = name;
@@ -75,7 +75,7 @@ public:
         cout << "Размер файла: " << size << " байт" << endl;
         cout << "Размер файла: " << getSizeInKB() << " КБ" << endl;
         cout << "Размер файла: " << getSizeInMB() << " МБ" << endl;
-        cout << "Дата создания: " << formatCreationDate() << endl;
+        cout << format("Дата создания: {}\n", creationDate);
     }
 
 private:
@@ -106,16 +106,16 @@ private:
 
 int secondLR()
 {
-    //setlocale(LC_ALL, "Russian");
-    //SetConsoleCP(1251);
-    //SetConsoleOutputCP(1251);
     SetConsoleCP(CP_UTF8);
     SetConsoleOutputCP(CP_UTF8);
-    
-    string name, extension;
-    File personalFile("example", "txt", 2048);
+    //Изменение кодировки для вывода корректных символов на кирилице
 
-    File myFile("example", "txt", 2048);
+    
+    string name, extension; //Предварительное обьявление переменных для последующего заполнения
+
+    File personalFile("example", "txt", 2048); // Создание "Пустого" экземпляра класса для последующей перезаписи
+
+    File myFile("example", "txt", 2048); // Создание экземпляра класса как примера для вывода
 
 
     cout << "Файл (Упрощенный)\n" << endl;
@@ -128,14 +128,14 @@ int secondLR()
         cout << "3. Вывести информацию о файле" << endl;
         cout << "4. Вывести пример" << endl;
         cout << "0. Назад" << endl;
-        int forSwitch = autoInput();
+        int forSwitch = autoInput(); // "автоматический" ввод числового значения 
 
         switch (forSwitch)
         {
         default:
             cout << "Некорректное значение." << endl;
             break;
-        case 1:
+        case 1: // Добавление нового экземпляра
         {
 
             cout << endl << "Введите название: ";
@@ -150,38 +150,37 @@ int secondLR()
             break;
         }
         
-        case 2:
+        case 2: //Изменение расширения файла
         {
-            string newExtension;
+            string newExtension; // строка в которую записывается новое расширение
             cout << endl << "Введите новое расширение файла: ";
             cin >> newExtension;
-            personalFile.changeExtension(newExtension);
+            personalFile.changeExtension(newExtension); //Изменение расширенмя
             cout << "Расширение успешно изменено!" << endl << endl;
             break;
         }
 
-        case 3:
+        case 3: //Вывод информации о файле
         {
             cout << endl;
-            personalFile.printFileInfo();
+            personalFile.printFileInfo(); //Вывод информации о файле
             cout << endl;
             break;
         }
-        case 4:
+        case 4: //Вывод примера (случай по умолчанию) 
             cout << endl;
-            // Выводим информацию о файле
-            myFile.printFileInfo();
+           
+            myFile.printFileInfo(); // Вывод информации о файле
 
-            cout << endl;
-
-            // Меняем расширение файла
-            myFile.changeExtension("log");
-
-            // Снова выводим информацию о файле
-            myFile.printFileInfo();
             cout << endl;
 
+            myFile.changeExtension("log"); // Изменение расширения файла
+
+           
+            myFile.printFileInfo(); // Снова вывод информации о файле
+            cout << endl;
             break;
+
         case 0:
             cout << endl << "Главное меню" << endl;
             return 0;
