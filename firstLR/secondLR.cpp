@@ -5,121 +5,21 @@
 #include <sstream>    // для строкового потока
 #include <windows.h>
 #include "functions.h"
-
+#include "File.h"
+#include "tests.h"
 
 using namespace std;
-
-// ===================================
-// Класс File
-// ===================================
-
-class File {
-private:
-    string name;          // имя файла
-    string extension;     // расширение файла
-    int size;             // размер файла в байтах
-
-    // Дата создания файла (используем chrono для хранения времени)
-    chrono::system_clock::time_point creationDate;
-
-public:
-     //-----------------------------------
-     //Конструктор для инициализации полей
-     //-----------------------------------
-    File(string name, string extension, int size)
-        : name(name), extension(extension), size(size), creationDate(chrono::system_clock::now())
-    {
-        if (size < 0)
-        {
-            cout << "Ошибка: размер файла не может быть отрицательным!" << endl;
-            this->size = 0; // исправляем
-        } 
-        cout << "Создан файл: " << name << "." << extension << " (" << size << " байт)" << endl;
-    }
-
-    // -----------------------------------
-    // Метод для получения полного имени файла (имя + точка + расширение)
-    // -----------------------------------
-    string getFullName() //Необходимо получать значение по условию задачи
-    {
-        return name + "." + extension;
-    }
-
-    // -----------------------------------
-    // Метод для получения размера файла в килобайтах
-    // -----------------------------------
-    double getSizeInKB() //Необходимо получать значение по условию задачи
-    {
-        return size / 1024.0; // перевод из байтов в килобайты
-    }
-
-    // -----------------------------------
-    // Метод для получения размера файла в мегабайтах
-    // -----------------------------------
-    double getSizeInMB() //Необходимо получать значение по условию задачи
-    {
-        return size / (1024.0 * 1024.0); // перевод из байтов в мегабайты
-    }
-
-    // -----------------------------------
-    // Метод для изменения расширения файла
-    // -----------------------------------
-    void changeExtension(string newExtension) //Необходимо изменять значение по условию задачи
-    {
-        extension = newExtension;
-    }
-
-    // -----------------------------------
-    // Метод для вывода информации о файле
-    // -----------------------------------
-    void printFileInfo() //Необходимо получать значения по условию задачи
-    {
-        cout << "Имя файла: " << getFullName() << endl;
-        cout << "Размер файла: " << size << " байт" << endl;
-        cout << "Размер файла: " << getSizeInKB() << " КБ" << endl;
-        cout << "Размер файла: " << getSizeInMB() << " МБ" << endl;
-        cout << format("Дата создания: {}\n", creationDate);
-    }
-
-private:
-    // -----------------------------------
-    // Вспомогательный метод для форматирования даты создания
-    // -----------------------------------
-    string formatCreationDate() const
-    {
-        // Преобразуем дату создания в системное время
-        time_t creationTimeT = chrono::system_clock::to_time_t(creationDate);
-
-        // Структура времени
-        tm tm{};
-#ifdef _WIN32
-        localtime_s(&tm, &creationTimeT); // безопасная версия для Windows
-#endif
-
-        // Строковый поток для форматирования
-        ostringstream oss;
-        oss << put_time(&tm, "%Y-%m-%d %H:%M:%S"); // формат: год-месяц-день часы:минуты:секунды
-        return oss.str();
-    }
-};
-
-// ===================================
-// Главная функция
-// ===================================
 
 int secondLR()
 {
     SetConsoleCP(CP_UTF8);
     SetConsoleOutputCP(CP_UTF8);
-    //Изменение кодировки для вывода корректных символов на кирилице
-
     
-    string name, extension; //Предварительное обьявление переменных для последующего заполнения
+    string name, extension;                             // Предварительное обьявление переменных для последующего заполнения
 
-    File personalFile("example", "txt", 2048); // Создание "Пустого" экземпляра класса для последующей перезаписи
+    File personalFile("example", "txt", 2048);          // Создание "Пустого" экземпляра класса для последующей перезаписи
 
-    File myFile("example", "txt", 2048); // Создание экземпляра класса как примера для вывода
-
+    File myFile("example", "txt", 2048);                // Создание экземпляра класса как примера для вывода
 
     cout << "Файл (Упрощенный)\n" << endl;
 
@@ -130,15 +30,16 @@ int secondLR()
         cout << "2. Изменить расширение файла" << endl;
         cout << "3. Вывести информацию о файле" << endl;
         cout << "4. Вывести пример" << endl;
+        cout << "5. Запуск тестов" << endl;
         cout << "0. Назад" << endl;
-        int forSwitch = autoInput(); // "автоматический" ввод числового значения 
-
+        int forSwitch = autoInput(); 
+                                                        // "автоматический" ввод числового значения 
         switch (forSwitch)
         {
         default:
             cout << "Некорректное значение." << endl;
             break;
-        case 1: // Добавление нового экземпляра
+        case 1:                                         // Добавление нового экземпляра
         {
 
             cout << endl << "Введите название: ";
@@ -153,9 +54,9 @@ int secondLR()
             break;
         }
         
-        case 2: //Изменение расширения файла
+        case 2:                                         // Изменение расширения файла
         {
-            string newExtension; // строка в которую записывается новое расширение
+            string newExtension;                        // Cтрока в которую записывается новое расширение
             cout << endl << "Введите новое расширение файла: ";
             cin >> newExtension;
             personalFile.changeExtension(newExtension); //Изменение расширенмя
@@ -163,24 +64,32 @@ int secondLR()
             break;
         }
 
-        case 3: //Вывод информации о файле
+        case 3:                                         // Вывод информации о файле
         {
             cout << endl;
-            personalFile.printFileInfo(); //Вывод информации о файле
+            personalFile.printFileInfo();               // Вывод информации о файле
             cout << endl;
             break;
         }
-        case 4: //Вывод примера (случай по умолчанию) 
+        case 4:                                         // Вывод примера (случай по умолчанию) 
             cout << endl;
            
-            myFile.printFileInfo(); // Вывод информации о файле
+            myFile.printFileInfo();                     // Вывод информации о файле
 
             cout << endl;
 
-            myFile.changeExtension("log"); // Изменение расширения файла
+            myFile.changeExtension("log");              // Изменение расширения файла
 
            
-            myFile.printFileInfo(); // Снова вывод информации о файле
+            myFile.printFileInfo();                     // Снова вывод информации о файле
+            cout << endl;
+            break;
+
+        case 5:
+            cout << endl;
+
+            cout << "Запуск тестов." << endl;
+            testFileClass();
             cout << endl;
             break;
 

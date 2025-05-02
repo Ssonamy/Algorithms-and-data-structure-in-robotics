@@ -1,10 +1,9 @@
 #pragma once
 #include <string>
-using namespace std;
 
-bool isInt(string x);
+bool isInt(std::string x);
 
-int stringToInt(string x);
+int stringToInt(std::string x);
 
 int firstLR();
 
