@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-bool isInt(std::string x);
+bool isInt(const std::string& x);
 
 int stringToInt(std::string x);
 

@@ -6,7 +6,7 @@
 
 using namespace std;
 
-bool isInt(string x) {
+bool isInt(const string& x) {
 	try {
 		int value = stoi(x);
 		return true;
