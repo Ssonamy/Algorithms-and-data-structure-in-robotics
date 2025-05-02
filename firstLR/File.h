@@ -11,23 +11,28 @@ private:
 
 public:
     // Инициализация полей
-    File(std::string name, std::string extension, int size);
-    std::string getFullName();
+    File(const std::string& name, const std::string& extension, int size);
 
     // Конструктор копирования
     File(const File& other); 
 
+    // Конструктор по умолчанию
+    File(); 
+
+    // Получение полного имени файла
+    std::string getFullName() const;
+
     // Получение размера в КБ
-    double getSizeInKB();
+    double getSizeInKB() const;
 
     // Получение размера в МБ
-    double getSizeInMB();
+    double getSizeInMB() const;
 
     // Изменение расширения файла
-    void changeExtension(std::string newExtension);
+    void changeExtension(const std::string newExtension);
 
     // Вывод информации
-    void printFileInfo();
+    void printFileInfo() const;
 
 private:
 

@@ -5,7 +5,7 @@
 using namespace std;
 
 // Конструктор для инициализации полей
-File::File(string name, string extension, int size)
+File::File(const string& name, const string& extension, int size)
     : name(name), extension(extension), size(size), creationDate(chrono::system_clock::now()) {
     if (size < 0) {
         cout << "Ошибка: размер файла не может быть отрицательным!" << endl;
@@ -14,28 +14,11 @@ File::File(string name, string extension, int size)
     }
 }
 
-// Метод для получения имени файла
-string File::getFullName() {
-    return name + "." + extension;
-}
-
-// Метод для получения размера файла в килобайтах 
-double File::getSizeInKB() {
-    return size / 1024.0;
-}
-
-// Метод для получения размера файла в мегабайтах
-double File::getSizeInMB() {
-    return size / (1024.0 * 1024.0);
-}
-
-// Метод для вывода информации о файле
-void File::printFileInfo() {
-    cout << "Имя файла: " << getFullName() << endl;
-    cout << "Размер файла: " << size << " байт" << endl;
-    cout << "Размер файла: " << getSizeInKB() << " КБ" << endl;
-    cout << "Размер файла: " << getSizeInMB() << " МБ" << endl;
-    cout << "Дата создания: " << formatCreationDate() << endl;
+// Конструктор по умолчанию
+File::File()
+    : name(""), extension(""), size(0), creationDate(chrono::system_clock::now())
+{
+    cout << "Создан файл по умолчанию: (без имени, размер 0 байт)" << endl;
 }
 
 // Конструктор копирования
@@ -43,6 +26,30 @@ File::File(const File& other)
     : name(other.name), extension(other.extension), size(other.size), creationDate(other.creationDate)
 {
     std::cout << "Файл успешно скопирован!" << std::endl;
+}
+
+// Метод для получения имени файла
+string File::getFullName() const{
+    return name + "." + extension;
+}
+
+// Метод для получения размера файла в килобайтах 
+double File::getSizeInKB() const {
+    return size / 1024.0;
+}
+
+// Метод для получения размера файла в мегабайтах
+double File::getSizeInMB() const {
+    return size / (1024.0 * 1024.0);
+}
+
+// Метод для вывода информации о файле
+void File::printFileInfo() const {
+    cout << "Имя файла: " << getFullName() << endl;
+    cout << "Размер файла: " << size << " байт" << endl;
+    cout << "Размер файла: " << getSizeInKB() << " КБ" << endl;
+    cout << "Размер файла: " << getSizeInMB() << " МБ" << endl;
+    cout << "Дата создания: " << formatCreationDate() << endl;
 }
 
 // Метод для изменения расширения
