@@ -1,18 +1,20 @@
 #include <iostream>
-#include <windows.h>
+//#include <windows.h>
 #include <vector>
 #include <sstream>
 #include <string>
 #include "functions.h"
+#include <clocale>
 
 using namespace std;
 
 int main() 
 {
-	SetConsoleCP(CP_UTF8);
+	//SetConsoleCP(CP_UTF8);
 	//SetConsoleCP(1251);
-	SetConsoleOutputCP(CP_UTF8);
+	//SetConsoleOutputCP(CP_UTF8);
 	//SetConsoleOutputCP(1251);
+	std::setlocale(LC_ALL, "ru_RU.utf8");
 	
 
 	string input;
@@ -28,6 +30,7 @@ int main()
 		cout << "Введите:\n";
 		cout << "1. Лабораторная номер 1: Сортировка.\n";
 		cout << "2. Лабораторная номер 2: Класс File (Упрощенный).\n";
+		cout << "3. Лабораторная номер 2: Класс Rectangle (Прямоугольник).";
 
 		cout << "0. Выход\n";
 
@@ -41,7 +44,14 @@ int main()
 
 		case 2:
 			cout << "\n";
-			secondLR();
+			if (secondLrFile()) 
+				return 0;
+			cout << "\n";
+			break;
+		case 3:
+			cout << "\n";
+			if (secondLrRectangle())
+				return 0;
 			cout << "\n";
 			break;
 
@@ -49,6 +59,8 @@ int main()
 			cout << "Выход...\n";
 			return 0;
 
+
+		// тест локали и может чего то ещё в будущем
 		case -1351:
 			std::cout << __cplusplus << std::endl;
 			cin >> input;
@@ -56,7 +68,7 @@ int main()
 			return 0;
 
 		default:
-			cout << "Введите корректное значение.\n";
+			cout << "Некорректное значение.\n";
 
 			break;
 		}

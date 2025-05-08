@@ -2,6 +2,8 @@
 #include "File.h"
 #include <iostream>
 #include <cassert>
+#include "Rectangle.h"
+#include "Point2D.h"
 #include <cmath> // для abs()
 using namespace std;
 
@@ -50,4 +52,52 @@ void testFileClass() {
     cout << "Метод изменения состояния работает корректно" << endl << endl;
 
     cout << "Тесты пройдены успешно!" << endl;
+}
+
+void testRectangleClass() {
+    cout << endl << "Тест конструктора по умолчанию" << endl;
+    Rectangle r1;
+    assert(r1.calculateArea() == 0.0);
+    assert(r1.calculatePerimeter() == 0.0);
+    cout << "Конструктор по умолчанию работает корректно" << endl << endl;
+
+    cout << "Тест конструктора с положительными значениями ширины и высоты" << endl;
+    Rectangle r2(Point2D(0.0, 0.0), 10.0, 5.0);
+    assert(r2.calculateArea() == 50.0);
+    assert(r2.calculatePerimeter() == 30.0);
+    cout << "Площадь и периметр рассчитываются корректно" << endl << endl;
+
+    cout << "Тест граничных точек (внутри и на краях прямоугольника)" << endl;
+    assert(r2.isInside(Point2D(0.0, 0.0)) == true);            // угол
+    assert(r2.isInside(Point2D(10.0, 0.0)) == true);           // правый край
+    assert(r2.isInside(Point2D(5.0, -5.0)) == true);           // центр
+    assert(r2.isInside(Point2D(0.0, -5.0)) == true);           // нижний левый
+    assert(r2.isInside(Point2D(10.0, -5.0)) == true);          // нижний правый
+    assert(r2.isInside(Point2D(11.0, -5.0)) == false);         // вне
+    cout << "Метод isInside работает корректно" << endl << endl;
+
+    cout << "Тест конструктора копирования" << endl;
+    Rectangle r3(r2);
+    assert(r3.calculateArea() == 50.0);
+    assert(r3.isInside(Point2D(5.0, -2.0)) == true);
+    cout << "Конструктор копирования работает корректно" << endl << endl;
+
+    cout << "Тест выброса исключения при некорректных значениях" << endl;
+    try {
+        Rectangle r4(Point2D(0.0, 0.0), -3.0, 4.0);
+        assert(false); // не должен дойти до этой строки
+    }
+    catch (const invalid_argument&) {
+        cout << "Обнаружено исключение при отрицательной ширине — корректно" << endl;
+    }
+
+    try {
+        Rectangle r5(Point2D(0.0, 0.0), 3.0, -4.0);
+        assert(false); // не должен дойти до этой строки
+    }
+    catch (const invalid_argument&) {
+        cout << "Обнаружено исключение при отрицательной высоте — корректно" << endl;
+    }
+
+    cout << endl << "Все тесты Rectangle успешно пройдены!" << endl;
 }

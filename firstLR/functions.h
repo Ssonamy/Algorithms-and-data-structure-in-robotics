@@ -9,4 +9,6 @@ int firstLR();
 
 int autoInput();
 
-int secondLR();
+bool secondLrFile();
+
+bool secondLrRectangle();

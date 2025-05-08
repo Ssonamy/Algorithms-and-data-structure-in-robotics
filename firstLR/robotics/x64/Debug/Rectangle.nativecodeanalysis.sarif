@@ -1,0 +1,51 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.43.34810.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/rectangle.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "27ab29e952d33b0e295090ce821b0d685b6198b2a1d682d5d8a623e77aaf620e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/rectangle.h"
+          },
+          "hashes": {
+            "sha-256": "a8adcde6fcf608108eaa30803512859901c4178fa2a3b6ad8a55ef39d541858b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/point2d.h"
+          },
+          "hashes": {
+            "sha-256": "6d377e8452e47cef2abea972816ce85311a1745052fcb34b1572028a70d5314f"
+          }
+        }
+      ]
+    }
+  ]
+}

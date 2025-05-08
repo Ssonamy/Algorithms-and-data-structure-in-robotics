@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <windows.h>
+#include <clocale>
 #include "functions.h"
 
 
@@ -22,8 +22,7 @@ int stringToInt(string x) {
 
 int autoInput()
 {
-	SetConsoleCP(CP_UTF8);
-	SetConsoleOutputCP(CP_UTF8);
+	std::setlocale(LC_ALL, "ru_RU.utf8");
 
 	while (true) {
 		string input;

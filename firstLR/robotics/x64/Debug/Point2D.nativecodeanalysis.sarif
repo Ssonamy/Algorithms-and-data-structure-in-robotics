@@ -1,0 +1,43 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.43.34810.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/point2d.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "9ae23e728e4cc66a6d910cbe328d18c9884f68f998584d1ee1f0703ab73f3374"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/point2d.h"
+          },
+          "hashes": {
+            "sha-256": "6d377e8452e47cef2abea972816ce85311a1745052fcb34b1572028a70d5314f"
+          }
+        }
+      ]
+    }
+  ]
+}

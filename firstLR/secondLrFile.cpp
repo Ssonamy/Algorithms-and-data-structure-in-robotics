@@ -3,19 +3,16 @@
 #include <iomanip>    // для форматирования вывода даты
 #include <chrono>     // для времени
 #include <sstream>    // для строкового потока
-#include <windows.h>
+#include <clocale>
 #include "functions.h"
 #include "File.h"
 #include "tests.h"
 
 using namespace std;
 
-int secondLR()
+bool secondLrFile()
 {
-    SetConsoleCP(CP_UTF8);
-    SetConsoleOutputCP(CP_UTF8);
-    
-    string name, extension;                             // Предварительное обьявление переменных для последующего заполнения
+    std::setlocale(LC_ALL, "ru_RU.utf8");
 
     File personalFile;                                  // Создание "Пустого" экземпляра класса для последующей перезаписи
 
@@ -32,6 +29,8 @@ int secondLR()
         cout << "4. Вывести пример" << endl;
         cout << "5. Запуск тестов" << endl;
         cout << "0. Назад" << endl;
+        cout << "-1. Выход" << endl;
+
         int forSwitch = autoInput(); 
                                                         // "автоматический" ввод числового значения 
         switch (forSwitch)
@@ -42,6 +41,8 @@ int secondLR()
 
         case 1:                                         // Добавление нового экземпляра
         {
+            string name, extension;                     // Предварительное обьявление переменных для последующего заполнения
+
             cout << endl << "Введите название: ";
             cin >> name;
             cout << endl << "Введите расширение: ";
@@ -96,6 +97,9 @@ int secondLR()
         case 0:
             cout << endl << "Главное меню" << endl;
             return 0;
+        case -1:
+            cout << endl << "Завершение программы." << endl;
+            return 1;
         }
     }
 }

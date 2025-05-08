@@ -133,12 +133,17 @@
     <ClCompile Include="firstLR.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="secondLR.cpp" />
+    <ClCompile Include="Point2D.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="secondLrFile.cpp" />
+    <ClCompile Include="secondLrRectangle.cpp" />
     <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="File.h" />
     <ClInclude Include="functions.h" />
+    <ClInclude Include="Point2D.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="tests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
