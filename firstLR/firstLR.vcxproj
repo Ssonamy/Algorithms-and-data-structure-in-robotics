@@ -129,6 +129,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\RoboticsLR3V6\thirdLrVar6.cpp" />
+    <ClCompile Include="CelestialBody.cpp" />
+    <ClCompile Include="CelestialSystem.cpp" />
     <ClCompile Include="File.cpp" />
     <ClCompile Include="firstLR.cpp" />
     <ClCompile Include="functions.cpp" />
@@ -140,6 +143,10 @@
     <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CelestialBody.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="CelestialSystem.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="Point2D.h" />
