@@ -42,13 +42,16 @@
     <ClCompile Include="secondLrRectangle.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\RoboticsLR3V6\thirdLrVar6.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="CelestialBody.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="CelestialSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdLrVar6.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyMap.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -72,6 +75,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="CelestialSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyMap.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

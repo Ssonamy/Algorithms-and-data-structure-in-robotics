@@ -7,7 +7,8 @@
 //#include "Point2D.h"
 
 using namespace std;
-void ex() {
+
+static void ex() {
     Rectangle exampleRect(Point2D(0.0, 0.0), 15, 10); // Создание экземпляра для вывода примера
     cout << endl <<  "Создан прямоугольник с левой верхней точкой в (0,0) шириной 15 и высотой 10" << endl;
     cout << "Площадь прямоугольника равна: " << exampleRect.calculateArea() << endl;
@@ -68,7 +69,7 @@ bool secondLrRectangle()
                 cout << "Прямоугольник успешно создан!" << endl;
             }
             catch (const invalid_argument&) {
-                cout << "Ошибка: Некорректное значение" << endl;
+                cout << "Ошибка: Некорректное значение" << endl << endl;
             }
 
             break;

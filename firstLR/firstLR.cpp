@@ -1,12 +1,9 @@
 #include <iostream>
-#include <windows.h>
 #include <vector>
-#include <sstream>
-#include <string>
 #include <cstdlib> // для rand()
 #include <ctime> // для time()
 #include <chrono> // для измерения времени
-#include "functions.h"
+#include <clocale>
 
 using namespace std;
 
@@ -87,8 +84,8 @@ long long measureTime(Func sortFunction, vector<int> arr) {
 
 int firstLR()
 {
-	SetConsoleCP(CP_UTF8);
-	SetConsoleOutputCP(CP_UTF8);
+	setlocale(LC_ALL, "ru_RU.utf8");
+
 	srand(time(nullptr)); // Инициализация генератора случайных чисел
 
 	vector<int> sizes = { 100, 1000, 10000 }; // Размеры массивов

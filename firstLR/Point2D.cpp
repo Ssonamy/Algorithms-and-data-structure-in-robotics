@@ -4,7 +4,7 @@
 using namespace std;
 
 // Конструктор инициалихзации
-Point2D::Point2D(const double inputX, const double inputY)
+Point2D::Point2D(double inputX, double inputY)
 	: x(inputX), y(inputY) {}
 
 // Конструктор по умолчанию
@@ -22,11 +22,6 @@ void Point2D::setX(double newX) { x = newX; }
 
 // Сеттер У
 void Point2D::setY(double newY) { y = newY; }
-
-// Вывод координаты
-void Point2D::print() const {
-	cout << "(" << x << ", " << y << ")" << endl;
-}
 
 // Перегрузка оператора ввода для ввода двух значений через пробел
 std::istream& operator>>(std::istream& is, Point2D& point) {

@@ -129,7 +129,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\RoboticsLR3V6\thirdLrVar6.cpp" />
     <ClCompile Include="CelestialBody.cpp" />
     <ClCompile Include="CelestialSystem.cpp" />
     <ClCompile Include="File.cpp" />
@@ -140,7 +139,9 @@
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="secondLrFile.cpp" />
     <ClCompile Include="secondLrRectangle.cpp" />
+    <ClCompile Include="SkyMap.cpp" />
     <ClCompile Include="tests.cpp" />
+    <ClCompile Include="thirdLrVar6.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CelestialBody.h">
@@ -151,6 +152,7 @@
     <ClInclude Include="functions.h" />
     <ClInclude Include="Point2D.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="SkyMap.h" />
     <ClInclude Include="tests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

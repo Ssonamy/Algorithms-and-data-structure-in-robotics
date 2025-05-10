@@ -1,7 +1,4 @@
 #include <iostream>
-//#include <windows.h>
-#include <vector>
-#include <sstream>
 #include <string>
 #include "functions.h"
 #include <clocale>
@@ -10,17 +7,13 @@ using namespace std;
 
 int main() 
 {
-	//SetConsoleCP(CP_UTF8);
-	//SetConsoleCP(1251);
-	//SetConsoleOutputCP(CP_UTF8);
-	//SetConsoleOutputCP(1251);
 	std::setlocale(LC_ALL, "ru_RU.utf8");
-	
 
 	string input;
 
-	cout << "_______________________________________\n";
+	cout << "_________________________________________________________\n";
 	cout << "Добро пожаловать в программу выбора решения лабораторной:\n";
+	cout << "_________________________________________________________\n";
 
 
 	//По мере выполнения буду добавлять варианты выбора
@@ -30,9 +23,10 @@ int main()
 		cout << "Введите:\n";
 		cout << "1. Лабораторная номер 1: Сортировка.\n";
 		cout << "2. Лабораторная номер 2: Класс File (Упрощенный).\n";
-		cout << "3. Лабораторная номер 2: Класс Rectangle (Прямоугольник).";
+		cout << "3. Лабораторная номер 2: Класс Rectangle (Прямоугольник).\n";
+		cout << "4. Лабораторная номер 3: Небесная карта\n";
 
-		cout << "0. Выход\n";
+		cout << "0. Выход\n" << endl;
 
 		int forSwitch = autoInput();
 
@@ -59,10 +53,16 @@ int main()
 			cout << "Выход...\n";
 			return 0;
 
+		case 4:
+			cout << endl;
+			if (thirdLrVar6())
+				return 0;
+			cout << endl;
+			break;
 
 		// тест локали и может чего то ещё в будущем
 		case -1351:
-			std::cout << __cplusplus << std::endl;
+			std::cout << "Версия С++: " << __cplusplus << std::endl;
 			cin >> input;
 			cout << input << endl << endl;
 			return 0;

@@ -1,8 +1,5 @@
 #include <iostream>
 #include <string>
-#include <clocale>
-#include "functions.h"
-
 
 using namespace std;
 
@@ -16,13 +13,12 @@ bool isInt(const string& x) {
 	}
 }
 
-int stringToInt(string x) {
+int stringToInt(const string x) {
 	return stoi(x);
 }
 
 int autoInput()
 {
-	std::setlocale(LC_ALL, "ru_RU.utf8");
 
 	while (true) {
 		string input;

@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <iostream>
 
 class CelestialBody {
 private:
@@ -34,7 +33,7 @@ public:
 	void setMagnitude(double newMagnitude);
 	void setName(const std::string& newName);
 
-	void printInfo() const;
+	virtual void printInfo() const;
 
 	double normalizeAngle(double angle);
 	double validateDeclination(double dec);

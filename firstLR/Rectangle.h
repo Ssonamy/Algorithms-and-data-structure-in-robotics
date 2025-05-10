@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "Point2D.h"
 
 class Rectangle {
