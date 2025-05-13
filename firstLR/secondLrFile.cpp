@@ -29,7 +29,7 @@ bool secondLrFile()
         cout << "0. Назад" << endl;
         cout << "-1. Выход" << endl;
 
-        int forSwitch = autoInput(); 
+        int forSwitch = autoInt(); 
                                                         // "автоматический" ввод числового значения 
         switch (forSwitch)
         {
@@ -46,7 +46,7 @@ bool secondLrFile()
             cout << endl << "Введите расширение: ";
             cin >> extension;
             cout << endl << "Введите размер файла: ";
-            int size = autoInput();
+            int size = autoInt();
 
             personalFile = File(name, extension, size);
             cout << "Файл успешно создан!" << endl << endl;

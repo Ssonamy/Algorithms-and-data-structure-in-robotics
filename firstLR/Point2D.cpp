@@ -23,6 +23,11 @@ void Point2D::setX(double newX) { x = newX; }
 // Сеттер У
 void Point2D::setY(double newY) { y = newY; }
 
+// Вывод координаты
+void Point2D::print() const {
+	cout << "(" << x << ", " << y << ")" << endl;
+}
+
 // Перегрузка оператора ввода для ввода двух значений через пробел
 std::istream& operator>>(std::istream& is, Point2D& point) {
 	is >> point.x >> point.y;

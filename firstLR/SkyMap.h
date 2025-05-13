@@ -1,40 +1,27 @@
 #pragma once
 #include "CelestialSystem.h"
 #include <string>
+#include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <memory>
 
-class SkyMap
-{
+class SkyMap {
 private:
-	std::vector<CelestialSystem> systems;
-	std::unordered_map<std::string, int> systemNameIndexMap;
+    std::vector<CelestialSystem> systems;
+    std::unordered_map<std::string, int> systemNameIndexMap;
 
 public:
+    SkyMap();
+    SkyMap(std::vector<CelestialSystem> systems, std::unordered_map<std::string, int> systemNameIndexMap);
 
-	// Конструктор с полями
-	SkyMap(std::vector<CelestialSystem> system, std::unordered_map<std::string, int> systemNameIndexMap);
-	
-	// Добавление звездной системы на карту
-	void addSystem(const CelestialSystem& system);
+    void addSystem(const CelestialSystem& system);
+    void removeSystem(int index);
 
-	// Удаление системы с карты
-	void removeSystem(int index);
+    int getQuantity() const;
+    const CelestialSystem* getSystemByName(const std::string& name) const;
+    void printAll() const;
 
-	// Геттер количества систем
-	int getQuantity() const;
-
-	// Геттер индекса системы по имени
-	const CelestialSystem* getSystemByName(const std::string& name) const;
-
-	// Вывод всех систем
-	void printAll() const;
-
-	// Фильтр по яркости
-	void filterByMagnitude(double maxMag);
-
-	// Поворот карты
-	void rotateMap(double angleDegrees);
-
+    void filterByMagnitude(double maxMag);
+    void rotateMap(double angleDegrees);
 };
-

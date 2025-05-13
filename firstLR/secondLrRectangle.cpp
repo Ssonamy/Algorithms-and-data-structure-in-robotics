@@ -47,7 +47,7 @@ bool secondLrRectangle()
         cout << "0. Назад" << endl;
         cout << "-1. Выход" << endl;
 
-        int forSwitch = autoInput();
+        int forSwitch = autoInt();
 
         switch (forSwitch)
         {

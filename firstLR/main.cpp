@@ -28,7 +28,7 @@ int main()
 
 		cout << "0. Выход\n" << endl;
 
-		int forSwitch = autoInput();
+		int forSwitch = autoInt();
 
 		switch (forSwitch)
 		{

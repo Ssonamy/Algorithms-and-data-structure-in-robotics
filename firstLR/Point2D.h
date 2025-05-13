@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 
 class Point2D {
@@ -25,6 +26,8 @@ public:
 
 	// Сеттер Y
 	void setY(const double inputY);
+
+	void print() const;
 
 	// Перегрузка оператора ввода для ввода двух значений через пробел
 	friend std::istream& operator>>(std::istream& is, Point2D& point);

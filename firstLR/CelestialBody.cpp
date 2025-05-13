@@ -1,4 +1,5 @@
 #include "CelestialBody.h"
+#include "clocale"
 
 using namespace std; 
 
@@ -46,10 +47,12 @@ void CelestialBody::setName(const std::string& newName) {
 }
 
 void CelestialBody::printInfo() const {
-	cout << "Координаты тела:\nПрямое восхождение: " << rightAscension;
-	cout << "\nСклонение: " << declination;
-	cout << "\nВидимая звездная величина: " << magnitude;
-	cout << "\nИмя тела: " << name << endl;
+	setlocale(LC_ALL, "ru_RU.utf8");
+
+	cout << "\nРРјСЏ С‚РµР»Р°: " << name << endl;
+	cout << "РљРѕРѕСЂРґРёРЅР°С‚С‹ С‚РµР»Р°:\nРџСЂСЏРјРѕРµ РІРѕСЃС…РѕР¶РґРµРЅРёРµ: " << rightAscension;
+	cout << "\nРЎРєР»РѕРЅРµРЅРёРµ: " << declination;
+	cout << "\nР’РёРґРёРјР°СЏ Р·РІРµР·РґРЅР°СЏ РІРµР»РёС‡РёРЅР°: " << magnitude;
 }
 
 double CelestialBody::normalizeAngle(double angle) {
@@ -58,14 +61,14 @@ double CelestialBody::normalizeAngle(double angle) {
 
 double CelestialBody::validateDeclination(double dec) {
 	if (dec < -90.0 || dec > 90.0) {
-		throw invalid_argument("Склонение должно быть в диапазоне от -90 до 90 градусов.");
+		throw invalid_argument("РЎРєР»РѕРЅРµРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РІ РґРёР°РїР°Р·РѕРЅРµ РѕС‚ -90 РґРѕ 90 РіСЂР°РґСѓСЃРѕРІ.");
 	}
 	return dec;
 }
 
 double CelestialBody::validateMagnitude(double mag) {
 	if (mag < -30.0 || mag > 30.0) {
-		throw invalid_argument("Недопустимое значение видимой звездной величины.");
+		throw invalid_argument("РќРµРґРѕРїСѓСЃС‚РёРјРѕРµ Р·РЅР°С‡РµРЅРёРµ РІРёРґРёРјРѕР№ Р·РІРµР·РґРЅРѕР№ РІРµР»РёС‡РёРЅС‹.");
 	}
 	return mag;
 }

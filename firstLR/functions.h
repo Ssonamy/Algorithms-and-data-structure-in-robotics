@@ -3,11 +3,11 @@
 
 bool isInt(const std::string& x);
 
-int stringToInt(const std::string x);
+bool isDouble(const std::string& x);
 
 int firstLR();
 
-int autoInput();
+int autoInt();
 
 bool secondLrFile();
 

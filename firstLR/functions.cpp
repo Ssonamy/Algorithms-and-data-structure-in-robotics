@@ -12,17 +12,21 @@ bool isInt(const string& x) {
 		return false;
 	}
 }
-
-int stringToInt(const string x) {
-	return stoi(x);
+bool isDouble(const std::string& x) {
+	try {
+		double value = stod(x);
+		return true;
+	}
+	catch (...) {
+		return false;
+	}
 }
 
-int autoInput()
+int autoInt()
 {
 
 	while (true) {
 		string input;
-		int output;
 
 		cout << "Введите: ";
 		cin >> input;
@@ -30,6 +34,6 @@ int autoInput()
 			cout << "Введите корректное число.\n";
 			continue;
 		}
-		return output = stringToInt(input);
+		return stoi(input);
 	}
 }
