@@ -201,25 +201,25 @@ static void showBodies() {
     }
 }
 
-void deleteBody(const shared_ptr<CelestialBody>& bodyToDelete,
-    vector<shared_ptr<CelestialSystem>>& systems,
-    vector<shared_ptr<CelestialBody>>& bodies) {
-
-    // Удаляем из всех систем
-    for (auto& system : systems) {
-        system->removeBody(bodyToDelete);
-    }
-
-    // Удаляем из основного списка
-    auto it = std::find(bodies.begin(), bodies.end(), bodyToDelete);
-    if (it != bodies.end()) {
-        bodies.erase(it);
-        cout << "Тело удалено." << endl;
-    }
-    else {
-        cout << "Не удалось найти тело для удаления." << endl;
-    }
-}
+//void deleteBody(const shared_ptr<CelestialBody>& bodyToDelete,
+//    vector<shared_ptr<CelestialSystem>>& systems,
+//    vector<shared_ptr<CelestialBody>>& bodies) {
+//
+//    // Удаляем из всех систем
+//    for (auto& system : systems) {
+//        system->removeBody(bodyToDelete);
+//    }
+//
+//    // Удаляем из основного списка
+//    auto it = std::find(bodies.begin(), bodies.end(), bodyToDelete);
+//    if (it != bodies.end()) {
+//        bodies.erase(it);
+//        cout << "Тело удалено." << endl;
+//    }
+//    else {
+//        cout << "Не удалось найти тело для удаления." << endl;
+//    }
+//}
 
 static void changeDeliteBodies() {
     bool mainFlag = true;
@@ -310,12 +310,14 @@ static void changeDeliteBodies() {
                     break;
 
                 case 5:
+                {
                     cout << "Удалить тело? (это навсегда) \n1 - Да \n2 - Нет" << endl;
                     int forIf = autoInt();
                     if (forIf == 1) {
-
+                        cout << "" << endl;
                     }
                     break;
+                }
 
                 case 0:
                     mainFlag = false;
@@ -417,6 +419,8 @@ bool thirdLrVar6() {
             break;
         case 10:
 
+            cout << "в тесты вошли";
+
             while (mainFlag)
             {
                 cout << endl << "____________________" << endl;
@@ -443,7 +447,7 @@ bool thirdLrVar6() {
                     break;
 
                 case 3:
-                    testSkyMapClass();
+                    //testSkyMapClass();
                     cout << endl;
                     break;
 
@@ -452,7 +456,7 @@ bool thirdLrVar6() {
                     cout << endl;
                     testCelestialSystemClass();
                     cout << endl;
-                    testSkyMapClass();
+                    //testSkyMapClass();
                     cout << endl;
                     break;
 

@@ -22,9 +22,7 @@ bool isDouble(const std::string& x) {
 	}
 }
 
-int autoInt()
-{
-
+int autoInt(){
 	while (true) {
 		string input;
 

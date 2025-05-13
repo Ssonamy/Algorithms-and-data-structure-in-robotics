@@ -35,21 +35,31 @@ void CelestialSystem::addBody(const shared_ptr<CelestialBody>& body) {
     }
 }
 
+
 void CelestialSystem::removeBody(const shared_ptr<CelestialBody>& bodyToRemove) {
-    for (size_t i = 0; i < members.size(); ++i) {
-        if (members[i] == bodyToRemove) {
-            string nameToRemove = members[i]->getName();
-            members.erase(members.begin() + i);
+    auto it = std::find(members.begin(), members.end(), bodyToRemove);
+    if (it != members.end()) {
+        int index = static_cast<int>(std::distance(members.begin(), it));
+        std::string nameToRemove = (*it)->getName();
 
-            for (auto& pair : nameIndexMap) {
-                if (pair.second > index) pair.second--;
+        members.erase(it);
+        nameIndexMap.erase(nameToRemove);
+
+        for (auto& pair : nameIndexMap) {
+            if (pair.second > index) {
+                pair.second--;
             }
+        }
 
-            if (primaryIndex == index) primaryIndex = -1;
-            else if (primaryIndex > index) primaryIndex--;
+        if (primaryIndex == index) {
+            primaryIndex = -1;
+        }
+        else if (primaryIndex > index) {
+            primaryIndex--;
         }
     }
 }
+
 
 const vector<shared_ptr<CelestialBody>>& CelestialSystem::getMembers() const {
     return members;
