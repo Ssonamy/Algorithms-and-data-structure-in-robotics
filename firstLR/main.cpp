@@ -1,14 +1,13 @@
 #include <iostream>
 #include <string>
 #include "functions.h"
-#include <clocale>
+#include "console_init.h"
 
 using namespace std;
 
 int main() 
 {
-	std::setlocale(LC_ALL, "ru_RU.utf8");
-
+	initConsole();
 	string input;
 
 	cout << "_________________________________________________________\n";
@@ -29,6 +28,7 @@ int main()
 		cout << "0. Выход\n" << endl;
 
 		int forSwitch = autoInt();
+
 
 		switch (forSwitch)
 		{

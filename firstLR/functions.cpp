@@ -29,7 +29,7 @@ int autoInt(){
 		cout << "Введите: ";
 		cin >> input;
 		if (!isInt(input)) {
-			cout << "Введите корректное число.\n";
+			cout << "Введите корректное число.\n" << endl;
 			continue;
 		}
 		return stoi(input);

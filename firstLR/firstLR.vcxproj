@@ -148,6 +148,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="CelestialSystem.h" />
+    <ClInclude Include="console_init.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="Point2D.h" />

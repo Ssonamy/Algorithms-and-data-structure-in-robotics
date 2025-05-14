@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "Rectangle.h"
 #include "tests.h"
-#include <clocale>
 
 //#include "Point2D.h"
 
@@ -28,8 +27,6 @@ static void ex() {
 
 bool secondLrRectangle()
 {
-    std::setlocale(LC_ALL, "ru_RU.utf8");
-
     Rectangle rect; // Инициализация пустого экземпляра для последующей работы с ним
     Point2D point;
 

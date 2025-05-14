@@ -1,7 +1,6 @@
 #include <iostream>   // для cout
 #include <string>     // для string
 #include <iomanip>    // для форматирования вывода даты
-#include <clocale>
 #include "functions.h"
 #include "File.h"
 #include "tests.h"
@@ -10,8 +9,6 @@ using namespace std;
 
 bool secondLrFile()
 {
-    std::setlocale(LC_ALL, "ru_RU.utf8");
-
     File personalFile;                                  // Создание "Пустого" экземпляра класса для последующей перезаписи
 
     File myFile("example", "txt", 2048);                // Создание экземпляра класса как примера для вывода

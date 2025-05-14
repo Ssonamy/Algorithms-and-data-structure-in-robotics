@@ -3,26 +3,25 @@
 #include <cstdlib> // для rand()
 #include <ctime> // для time()
 #include <chrono> // для измерения времени
-#include <clocale>
 
 using namespace std;
 
 
 // Функция для генерации и заполнения массива необходимой длинны случайными числами
-vector<int> generateRandomArray(const int size)
+static vector<int> generateRandomArray(size_t size)
 {
 	vector<int> arr(size);
-	for (int i = 0; i < size; ++i)
+	for (size_t i = 0; i < size; ++i)
 		arr[i] = rand() % 10000;
 	return arr;
 }
 
 
-void bubbleSort(vector<int>& arr) // Сортировка пузырьком: проходит по массиву и меняет местами соседние элементы, если они идут в неправильном порядке. Повторяет это, пока массив не отсортирован.
+static void bubbleSort(vector<int>& arr) // Сортировка пузырьком: проходит по массиву и меняет местами соседние элементы, если они идут в неправильном порядке. Повторяет это, пока массив не отсортирован.
 {
-	int size = arr.size();
-	for (int i = 0; i < size - 1; ++i) {
-		for (int j = 0; j < size - i - 1; ++j) {
+	size_t size = arr.size();
+	for (size_t i = 0; i < size - 1; ++i) {
+		for (size_t j = 0; j < size - i - 1; ++j) {
 			if (arr[j] > arr[j + 1])
 				swap(arr[j], arr[j + 1]);
 		}
@@ -30,10 +29,10 @@ void bubbleSort(vector<int>& arr) // Сортировка пузырьком: п
 }
 
 
-void insertionSort(vector<int>& arr) // Сортировка вставками: берет элементы один за другим и вставляет их в нужное место среди уже отсортированных элементов слева.
+static void insertionSort(vector<int>& arr) // Сортировка вставками: берет элементы один за другим и вставляет их в нужное место среди уже отсортированных элементов слева.
 {
-	int size = arr.size();
-	for (int i = 1; i < size; ++i) {
+	size_t size = arr.size();
+	for (int i = 1; i < static_cast<int>(arr.size()); ++i) {
 		int key = arr[i];
 		int j = i - 1;
 		while (j >= 0 && arr[j] > key) {
@@ -44,9 +43,9 @@ void insertionSort(vector<int>& arr) // Сортировка вставками:
 	}
 }
 
-void merge(vector<int>& arr, const int left, const int mid, const int right) //Вспомогательная функция для сортироовки слиянием
+static void merge(vector<int>& arr, size_t left, size_t mid, size_t right) //Вспомогательная функция для сортироовки слиянием
 {
-	int i = left, j = mid + 1;
+	size_t i = left, j = mid + 1;
 	vector<int> temp;
 
 	while (i <= mid && j <= right) {
@@ -59,14 +58,14 @@ void merge(vector<int>& arr, const int left, const int mid, const int right) //�
 	while (i <= mid) temp.push_back(arr[i++]);
 	while (j <= right) temp.push_back(arr[j++]);
 
-	for (int k = 0; k < temp.size(); ++k)
+	for (size_t k = 0; k < temp.size(); ++k)
 		arr[left + k] = temp[k];
 }
 
-void mergeSort(vector<int>& arr, const int left, const int right) // Сортировка слиянием: делит массив на две части, сортирует каждую часть отдельно (рекурсивно), а потом сливает их обратно в один отсортированный массив.
+static void mergeSort(vector<int>& arr, size_t left, size_t right) // Сортировка слиянием: делит массив на две части, сортирует каждую часть отдельно (рекурсивно), а потом сливает их обратно в один отсортированный массив.
 {
 	if (left < right) {
-		int mid = (left + right) / 2;
+		size_t mid = left + (right - left) / 2;
 		mergeSort(arr, left, mid);
 		mergeSort(arr, mid + 1, right);
 		merge(arr, left, mid, right);
@@ -84,13 +83,11 @@ long long measureTime(Func sortFunction, vector<int> arr) {
 
 int firstLR()
 {
-	setlocale(LC_ALL, "ru_RU.utf8");
+	srand(static_cast<unsigned int>(time(nullptr))); // Инициализация генератора случайных чисел
 
-	srand(time(nullptr)); // Инициализация генератора случайных чисел
+	vector<size_t> sizes = { 100, 1000, 10000 }; // Размеры массивов
 
-	vector<int> sizes = { 100, 1000, 10000 }; // Размеры массивов
-
-	for (int size : sizes) {
+	for (size_t size : sizes) {
 		cout << "\nРазмер массива: " << size << "\n";
 
 		auto base = generateRandomArray(size);
