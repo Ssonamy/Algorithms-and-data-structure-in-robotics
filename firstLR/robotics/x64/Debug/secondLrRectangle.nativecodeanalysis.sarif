@@ -1,0 +1,67 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.43.34810.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/secondlrrectangle.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "34a09c7b9268c27f1c226203344a2691e2cf4907d9cdba99cf5507b625076d04"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/functions.h"
+          },
+          "hashes": {
+            "sha-256": "46d0b640d6dc2a45288627fed67079d01a964824ee8dfa2e9bb9b012f43c5709"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/rectangle.h"
+          },
+          "hashes": {
+            "sha-256": "f4e09e668fbf7fb342a7a84ecbd148eb10730e695271d9750dc117317bc01bb2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/point2d.h"
+          },
+          "hashes": {
+            "sha-256": "55f3b55794176f6cf400b756fc43885ef0d9f577cb4a9553ffd9b3d31e5739d1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/tests.h"
+          },
+          "hashes": {
+            "sha-256": "70e9cc067dab20eda2bfc0fa1edcd222ed6d51833bb615febf3059f486b51bf5"
+          }
+        }
+      ]
+    }
+  ]
+}

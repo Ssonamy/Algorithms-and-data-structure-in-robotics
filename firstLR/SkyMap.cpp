@@ -3,11 +3,14 @@
 
 using namespace std;
 
-SkyMap::SkyMap() : systems(), systemNameIndexMap() {}
+SkyMap::SkyMap() : systems(), systemNameIndexMap(), name("") {}
 
-SkyMap::SkyMap(vector<shared_ptr<CelestialSystem>> systems, unordered_map<string, int> systemNameIndexMap)
-    : systems(systems), systemNameIndexMap(systemNameIndexMap) {
+SkyMap::SkyMap(const vector<shared_ptr<CelestialSystem>> systems, unordered_map<string, int> systemNameIndexMap, const string& name)
+    : systems(systems), systemNameIndexMap(systemNameIndexMap), name(name) {
 }
+
+SkyMap::SkyMap(const SkyMap& other)
+: systems(other.systems), systemNameIndexMap(other.systemNameIndexMap), name(other.name) {}
 
 void SkyMap::addSystem(const shared_ptr<CelestialSystem>& system) {
     string name = system->getName();
@@ -16,9 +19,23 @@ void SkyMap::addSystem(const shared_ptr<CelestialSystem>& system) {
         systemNameIndexMap[name] = static_cast<int>(systems.size()) - 1;
     }
     else {
-        cerr << "—ËÒÚÂÏ‡ Ò ËÏÂÌÂÏ \"" << name << "\" ÛÊÂ ÒÛ˘ÂÒÚ‚ÛÂÚ ‚ ÒËÒÚÂÏÂ.\n";
+        cerr << "–°–∏—Å—Ç–µ–º–∞ —Å –∏–º–µ–Ω–µ–º \"" << name << "\" —É–∂–µ —Å—É—â–µ—Å—Ç–≤—É–µ—Ç –≤ —Å–∏—Å—Ç–µ–º–µ.\n";
     }
 }
+
+std::shared_ptr<SkyMap> SkyMap::deepCopy() const {
+    vector<shared_ptr<CelestialSystem>> newSystems; 
+    unordered_map<string, int> newIndexMap;
+
+    for (const auto& system : systems) {
+        auto clonedSystem = system->deepCopy();
+        newIndexMap[clonedSystem->getName()] = static_cast<int>(newSystems.size());
+        newSystems.push_back(clonedSystem);
+    }
+    string newName = "–ö–æ–ø–∏—è –∫–∞—Ä—Ç—ã";
+    return make_shared<SkyMap>(newSystems, newIndexMap, newName);
+}
+
 
 void SkyMap::removeSystem(int index) {
     if (index >= 0 && index < static_cast<int>(systems.size())) {
@@ -42,10 +59,10 @@ void SkyMap::removeSystemByName(const string& name) {
         for (auto& pair : systemNameIndexMap) {
             if (pair.second > index) pair.second--;
         }
-        cout << "—ËÒÚÂÏ‡ \"" << name << "\" Û‰‡ÎÂÌ‡.\n";
+        cout << "–°–∏—Å—Ç–µ–º–∞ \"" << name << "\" —É–¥–∞–ª–µ–Ω–∞.\n";
     }
     else {
-        cerr << "—ËÒÚÂÏ‡ Ò ËÏÂÌÂÏ \"" << name << "\" ÌÂ Ì‡È‰ÂÌ‡.\n";
+        cerr << "–°–∏—Å—Ç–µ–º–∞ —Å –∏–º–µ–Ω–µ–º \"" << name << "\" –Ω–µ –Ω–∞–π–¥–µ–Ω–∞.\n";
     }
 }
 
@@ -59,17 +76,11 @@ void SkyMap::removeSystemByPointer(const shared_ptr<CelestialSystem>& systemToRe
             for (auto& pair : systemNameIndexMap) {
                 if (pair.second > static_cast<int>(i)) pair.second--;
             }
-            cout << "—ËÒÚÂÏ‡ \"" << name << "\" Û‰‡ÎÂÌ‡ ÔÓ ÛÍ‡Á‡ÚÂÎ˛.\n";
+            cout << "–°–∏—Å—Ç–µ–º–∞ \"" << name << "\" —É–¥–∞–ª–µ–Ω–∞ –ø–æ —É–∫–∞–∑–∞—Ç–µ–ª—é.\n";
             return;
         }
     }
-    cerr << "—ËÒÚÂÏ‡ ÌÂ Ì‡È‰ÂÌ‡ ÔÓ ÛÍ‡Á‡ÚÂÎ˛.\n";
-}
-
-void SkyMap::removeBodyFromAllSystems(const shared_ptr<CelestialBody>& bodyToRemove) {
-    for (auto& system : systems) {
-        system->removeBody(bodyToRemove);
-    }
+    cerr << "–°–∏—Å—Ç–µ–º–∞ –Ω–µ –Ω–∞–π–¥–µ–Ω–∞ –ø–æ —É–∫–∞–∑–∞—Ç–µ–ª—é.\n";
 }
 
 int SkyMap::getQuantity() const {
@@ -96,6 +107,16 @@ void SkyMap::rotateMap(double angleDegrees) {
     }
 }
 
+bool SkyMap::isSystemInSystemByName(const string& name)
+{
+    for (const auto& system : systems) {
+        if (system->getName() == name) {
+            return true;
+        }
+    }
+        return false;
+}
+
 void SkyMap::filterByMagnitude(double maxMag) {
     vector<shared_ptr<CelestialSystem>> filteredSystems;
     unordered_map<string, int> newSystemIndexMap;
@@ -103,16 +124,12 @@ void SkyMap::filterByMagnitude(double maxMag) {
     for (const auto& system : systems) {
         vector<shared_ptr<CelestialBody>> filteredBodies;
         unordered_map<string, int> newIndexMap;
-        int newPrimaryIndex = -1;
 
         const auto& bodies = system->getMembers();
         for (size_t i = 0; i < bodies.size(); ++i) {
             if (bodies[i]->getMagnitude() <= maxMag) {
                 newIndexMap[bodies[i]->getName()] = static_cast<int>(filteredBodies.size());
                 filteredBodies.push_back(bodies[i]);
-                if (i == static_cast<size_t>(system->getPrimaryIndex())) {
-                    newPrimaryIndex = static_cast<int>(filteredBodies.size()) - 1;
-                }
             }
         }
 
@@ -123,8 +140,7 @@ void SkyMap::filterByMagnitude(double maxMag) {
                 system->getMagnitude(),
                 system->getName(),
                 filteredBodies,
-                newIndexMap,
-                newPrimaryIndex
+                newIndexMap
             );
             newSystemIndexMap[filteredSystem->getName()] = static_cast<int>(filteredSystems.size());
             filteredSystems.push_back(filteredSystem);

@@ -26,15 +26,7 @@
             "analysisTarget"
           ],
           "hashes": {
-            "sha-256": "2737358441c79c3453393de6761d2401444c12a4808bfcdfd954daa419b62075"
-          }
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/tests.h"
-          },
-          "hashes": {
-            "sha-256": "6989299a68fb3f10e5a0dba0117ce8a3fdf8dd0e31835c37fff7be591720023d"
+            "sha-256": "809556e8575969bf6db0392e7bce332e42db4b161b0c50d8176b51addf9efcd0"
           }
         },
         {
@@ -43,6 +35,46 @@
           },
           "hashes": {
             "sha-256": "326194e64aa285d42b3ecc0788058c5242257e6cdd197c4dff6efc555512e4fb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/rectangle.h"
+          },
+          "hashes": {
+            "sha-256": "f4e09e668fbf7fb342a7a84ecbd148eb10730e695271d9750dc117317bc01bb2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/point2d.h"
+          },
+          "hashes": {
+            "sha-256": "55f3b55794176f6cf400b756fc43885ef0d9f577cb4a9553ffd9b3d31e5739d1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/celestialbody.h"
+          },
+          "hashes": {
+            "sha-256": "0ad0899296c90a5c4e2089c686d018b4f5cbb8dd6ddcd2c313fd56b199e9af68"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/celestialsystem.h"
+          },
+          "hashes": {
+            "sha-256": "e4d43034940c2f52718b484f3ef77cd71076a080fd265e0d2d333f4770212fa9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/skymap.h"
+          },
+          "hashes": {
+            "sha-256": "1d31fc4f928d211ec37f267643f576d1181ab1826c2912081f61c63174046490"
           }
         }
       ]

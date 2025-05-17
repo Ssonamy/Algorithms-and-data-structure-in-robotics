@@ -7,16 +7,17 @@
 
 class CelestialSystem : public CelestialBody {
 private:
-    std::vector<std::shared_ptr<CelestialBody>> members;
+    std::vector<std::shared_ptr<CelestialBody>> members; 
     std::unordered_map<std::string, int> nameIndexMap;
-    int primaryIndex;
 
 public:
     CelestialSystem();
     CelestialSystem(double ra, double dec, double mag, const std::string& name,
         const std::vector<std::shared_ptr<CelestialBody>>& members,
-        const std::unordered_map<std::string, int>& nameIndexMap,
-        int primaryIndex = -1);
+        const std::unordered_map<std::string, int>& nameIndexMap);
+
+    std::shared_ptr<CelestialSystem> deepCopy() const;
+
     CelestialSystem(const CelestialSystem& other);
 
     void addBody(const std::shared_ptr<CelestialBody>& body);
@@ -26,9 +27,10 @@ public:
     std::vector<std::shared_ptr<CelestialBody>>& getMembers();
 
     int getQuantity() const;
-    int getPrimaryIndex() const;
 
     void printInfo() const override;
     const std::shared_ptr<CelestialBody> getBodyByName(const std::string& name) const;
-    bool setPrimaryByName(const std::string& name);
+
+    bool isBodyInSystemByName(const std::string& name);
+
 };

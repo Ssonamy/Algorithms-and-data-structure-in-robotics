@@ -4,24 +4,41 @@
 using namespace std;
 
 CelestialSystem::CelestialSystem()
-    : CelestialBody(), primaryIndex(-1) {
+    : CelestialBody(){
 }
 
 CelestialSystem::CelestialSystem(double ra, double dec, double mag, const string& name,
     const vector<shared_ptr<CelestialBody>>& members,
-    const unordered_map<string, int>& nameIndexMap,
-    int primaryIndex)
+    const unordered_map<string, int>& nameIndexMap)
     : CelestialBody(ra, dec, mag, name),
     members(members),
-    nameIndexMap(nameIndexMap),
-    primaryIndex(primaryIndex) {
+    nameIndexMap(nameIndexMap){
 }
 
 CelestialSystem::CelestialSystem(const CelestialSystem& other)
     : CelestialBody(other),
     members(other.members),
-    nameIndexMap(other.nameIndexMap),
-    primaryIndex(other.primaryIndex) {
+    nameIndexMap(other.nameIndexMap) {
+}
+
+shared_ptr<CelestialSystem> CelestialSystem::deepCopy() const {
+    vector<shared_ptr<CelestialBody>> newMembers;
+    unordered_map<string, int> newIndexMap;
+
+    for (size_t i = 0; i < members.size(); ++i) {
+        shared_ptr<CelestialBody> newBody = make_shared<CelestialBody>(*members[i]);
+        newMembers.push_back(newBody);
+        newIndexMap[newBody->getName()] = static_cast<int>(i);
+    }
+
+    return make_shared<CelestialSystem>(
+        getRightAscension(),
+        getDeclination(),
+        getMagnitude(),
+        getName(),
+        newMembers,
+        newIndexMap
+    );
 }
 
 void CelestialSystem::addBody(const shared_ptr<CelestialBody>& body) {
@@ -31,16 +48,16 @@ void CelestialSystem::addBody(const shared_ptr<CelestialBody>& body) {
         nameIndexMap[name] = static_cast<int>(members.size()) - 1;
     }
     else {
-        cerr << "Òåëî ñ èìåíåì \"" << name << "\" óæå ñóùåñòâóåò â ñèñòåìå.\n";
+        cerr << "Ð¢ÐµÐ»Ð¾ Ñ Ð¸Ð¼ÐµÐ½ÐµÐ¼ \"" << name << "\" ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚ Ð² ÑÐ¸ÑÑ‚ÐµÐ¼Ðµ.\n" << endl;
     }
 }
 
 
 void CelestialSystem::removeBody(const shared_ptr<CelestialBody>& bodyToRemove) {
-    auto it = std::find(members.begin(), members.end(), bodyToRemove);
+    auto it = find(members.begin(), members.end(), bodyToRemove);
     if (it != members.end()) {
-        int index = static_cast<int>(std::distance(members.begin(), it));
-        std::string nameToRemove = (*it)->getName();
+        int index = static_cast<int>(distance(members.begin(), it));
+        string nameToRemove = (*it)->getName();
 
         members.erase(it);
         nameIndexMap.erase(nameToRemove);
@@ -49,13 +66,6 @@ void CelestialSystem::removeBody(const shared_ptr<CelestialBody>& bodyToRemove) 
             if (pair.second > index) {
                 pair.second--;
             }
-        }
-
-        if (primaryIndex == index) {
-            primaryIndex = -1;
-        }
-        else if (primaryIndex > index) {
-            primaryIndex--;
         }
     }
 }
@@ -73,24 +83,25 @@ int CelestialSystem::getQuantity() const {
     return static_cast<int>(members.size());
 }
 
-int CelestialSystem::getPrimaryIndex() const {
-    return primaryIndex;
-}
 
 void CelestialSystem::printInfo() const {
-    cout << "Ãðàâèòàöèîííàÿ ñèñòåìà: " << getName() << endl;
+    cout << "Ð“Ñ€Ð°Ð²Ð¸Ñ‚Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð°Ñ ÑÐ¸ÑÑ‚ÐµÐ¼Ð°: " << getName() << endl;
 
-    if (primaryIndex >= 0 && primaryIndex < members.size()) {
-        cout << "\nÎñíîâíîå òåëî:\n";
-        members[primaryIndex]->printInfo();
-    }
-
-    cout << "\n×ëåíû ñèñòåìû (" << members.size() << "):\n";
+    cout << "\nÐ§Ð»ÐµÐ½Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹ (" << members.size() << "):\n";
     for (size_t i = 0; i < members.size(); ++i) {
-        if (static_cast<int>(i) == primaryIndex) cout << " - (ãëàâíîå òåëî) ";
-        else cout << " - ";
+        cout << " - ";
         members[i]->printInfo();
         cout << endl;
+    }
+}
+
+bool CelestialSystem::isBodyInSystemByName(const string& name) {
+    auto it = nameIndexMap.find(name);
+    if (it != nameIndexMap.end()) {
+        return true;
+    }
+    else {
+        return false;
     }
 }
 
@@ -100,13 +111,4 @@ const shared_ptr<CelestialBody> CelestialSystem::getBodyByName(const string& nam
         return members[it->second];
     }
     return nullptr;
-}
-
-bool CelestialSystem::setPrimaryByName(const string& name) {
-    auto it = nameIndexMap.find(name);
-    if (it != nameIndexMap.end()) {
-        primaryIndex = it->second;
-        return true;
-    }
-    return false;
 }

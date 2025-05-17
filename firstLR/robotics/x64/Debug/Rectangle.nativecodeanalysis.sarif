@@ -26,7 +26,7 @@
             "analysisTarget"
           ],
           "hashes": {
-            "sha-256": "27ab29e952d33b0e295090ce821b0d685b6198b2a1d682d5d8a623e77aaf620e"
+            "sha-256": "d8bec47c4e1d02fed3b7cbc470ba18c706ec12f8baf155df6c514c21d381f464"
           }
         },
         {
@@ -34,7 +34,7 @@
             "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/rectangle.h"
           },
           "hashes": {
-            "sha-256": "a8adcde6fcf608108eaa30803512859901c4178fa2a3b6ad8a55ef39d541858b"
+            "sha-256": "f4e09e668fbf7fb342a7a84ecbd148eb10730e695271d9750dc117317bc01bb2"
           }
         },
         {
@@ -42,7 +42,7 @@
             "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/point2d.h"
           },
           "hashes": {
-            "sha-256": "6d377e8452e47cef2abea972816ce85311a1745052fcb34b1572028a70d5314f"
+            "sha-256": "55f3b55794176f6cf400b756fc43885ef0d9f577cb4a9553ffd9b3d31e5739d1"
           }
         }
       ]

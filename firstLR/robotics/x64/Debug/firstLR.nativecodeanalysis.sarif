@@ -26,15 +26,7 @@
             "analysisTarget"
           ],
           "hashes": {
-            "sha-256": "9ec0dc73ba7c533f18041bc400d2ec8be38fe8571014f0aec6ffb3cd7902dcae"
-          }
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/functions.h"
-          },
-          "hashes": {
-            "sha-256": "0ef0ce344a9e962630ec56fda62fc80063662317ba53d233429f44c13271891f"
+            "sha-256": "a62de4af4986284e2f555748edca2577437d4755429069e6dd9aee380c9d79bc"
           }
         }
       ]

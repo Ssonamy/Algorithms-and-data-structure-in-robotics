@@ -167,7 +167,6 @@ void testCelestialSystemClass() {
     cout << "\nТест конструктора по умолчанию" << endl;
     CelestialSystem defaultSystem;
     assert(defaultSystem.getQuantity() == 0);
-    assert(defaultSystem.getPrimaryIndex() == -1);
     assert(defaultSystem.getMembers().empty());
     cout << "Конструктор по умолчанию работает корректно\n" << endl;
 
@@ -178,9 +177,8 @@ void testCelestialSystemClass() {
     };
 
     unordered_map<string, int> nameMap = { {"Alpha", 0}, {"Beta", 1} };
-    CelestialSystem paramSystem(10.0, -10.0, 0.5, "System A", bodies, nameMap, 0);
+    CelestialSystem paramSystem(10.0, -10.0, 0.5, "System A", bodies, nameMap);
     assert(paramSystem.getQuantity() == 2);
-    assert(paramSystem.getPrimaryIndex() == 0);
     assert(paramSystem.getBodyByName("Alpha") != nullptr);
     assert(paramSystem.getBodyByName("Beta") != nullptr);
     assert(paramSystem.getBodyByName("Gamma") == nullptr);
@@ -189,7 +187,6 @@ void testCelestialSystemClass() {
     cout << "Тест конструктора копирования" << endl;
     CelestialSystem copiedSystem(paramSystem);
     assert(copiedSystem.getQuantity() == paramSystem.getQuantity());
-    assert(copiedSystem.getPrimaryIndex() == paramSystem.getPrimaryIndex());
     assert(copiedSystem.getBodyByName("Alpha")->getName() == "Alpha");
     cout << "Конструктор копирования работает корректно\n" << endl;
 
@@ -216,57 +213,59 @@ void testCelestialSystemClass() {
     cout << "Тест удаления главного тела" << endl;
     auto alpha = copiedSystem.getBodyByName("Alpha");
     copiedSystem.removeBody(alpha); // Удаляем "Alpha" (основное тело)
-    assert(copiedSystem.getPrimaryIndex() == -1);
     cout << "Удаление основного тела корректно сбрасывает индекс\n" << endl;
 
 
     cout << "Тесты пройдены успешно!" << endl;
 }
 
-//void testSkyMapClass() {
-//    cout << "\nТест конструктора по умолчанию" << endl;
-//    SkyMap defaultMap;
-//    assert(defaultMap.getQuantity() == 0);
-//    cout << "Конструктор по умолчанию работает корректно\n" << endl;
-//
-//    cout << "Тест конструктора с параметрами" << endl;
-//    vector<shared_ptr<CelestialBody>> bodies = {
-//        make_shared<CelestialBody>(0.0, 0.0, 1.0, "Alpha"),
-//        make_shared<CelestialBody>(1.0, 1.0, 2.0, "Beta")
-//    };
-//    unordered_map<string, int> nameMap = { {"Alpha", 0}, {"Beta", 1} };
-//    CelestialSystem paramSystem(10.0, -10.0, 0.5, "System A", bodies, nameMap, 0);
-//    //SkyMap paramMap({ paramSystem }, { {"System A", 0} });
-//    assert(paramMap.getQuantity() == 1);
-//    cout << "Конструктор с параметрами работает корректно\n" << endl;
-//
-//    cout << "Тест добавления системы на карту" << endl;
-//    vector<shared_ptr<CelestialBody>> newBodies = {
-//        make_shared<CelestialBody>(2.0, 2.0, 1.5, "Gamma")
-//    };
-//    unordered_map<string, int> newIndexMap = { {"Gamma", 0} };
-//    CelestialSystem newSystem(5.0, 5.0, 1.0, "System B", newBodies, newIndexMap, 0);
-//    //paramMap.addSystem(newSystem);
-//    assert(paramMap.getQuantity() == 2);
-//    cout << "Добавление системы работает корректно\n" << endl;
-//
-//    cout << "Тест фильтрации по светимости" << endl;
-//    paramMap.filterByMagnitude(1.5);
-//
-//    auto filteredSystem = paramMap.getSystemByName("System A");
-//    assert(filteredSystem != nullptr);
-//    assert(filteredSystem->getQuantity() == 1);  // Осталась только "Alpha"
-//    assert(filteredSystem->getBodyByName("Alpha") != nullptr);
-//    assert(filteredSystem->getBodyByName("Beta") == nullptr);
-//    cout << "Фильтрация по светимости работает корректно\n" << endl;
-//
-//    cout << "Тест поворота карты" << endl;
-//    paramMap.rotateMap(90);
-//
-//    filteredSystem = paramMap.getSystemByName("System A");
-//    assert(filteredSystem != nullptr);
-//    assert(filteredSystem->getQuantity() == 1);
-//    cout << "Поворот карты работает корректно\n" << endl;
-//
-//    cout << "Тесты пройдены успешно!" << endl;
-//}
+void testSkyMapClass() {
+    cout << "\nТест конструктора по умолчанию" << endl;
+    SkyMap defaultMap;
+    assert(defaultMap.getQuantity() == 0);
+    cout << "Конструктор по умолчанию работает корректно\n" << endl;
+
+    cout << "Тест конструктора с параметрами" << endl;
+    vector<shared_ptr<CelestialBody>> bodies = {
+        make_shared<CelestialBody>(0.0, 0.0, 1.0, "Alpha"),
+        make_shared<CelestialBody>(1.0, 1.0, 2.0, "Beta")
+    };
+    unordered_map<string, int> nameMap = { {"Alpha", 0}, {"Beta", 1} };
+    auto systemA = make_shared<CelestialSystem>(10.0, -10.0, 0.5, "System A", bodies, nameMap);
+
+    SkyMap paramMap({ systemA }, { {"System A", 0} });
+    assert(paramMap.getQuantity() == 1);
+    cout << "Конструктор с параметрами работает корректно\n" << endl;
+
+    cout << "Тест добавления системы на карту" << endl;
+    vector<shared_ptr<CelestialBody>> newBodies = {
+        make_shared<CelestialBody>(2.0, 2.0, 1.5, "Gamma")
+    };
+    unordered_map<string, int> newIndexMap = { {"Gamma", 0} };
+    auto systemB = make_shared<CelestialSystem>(5.0, 5.0, 1.0, "System B", newBodies, newIndexMap);
+    paramMap.addSystem(systemB);
+    assert(paramMap.getQuantity() == 2);
+    cout << "Добавление системы работает корректно\n" << endl;
+
+    cout << "Тест фильтрации по светимости" << endl;
+    paramMap.filterByMagnitude(1.5);
+
+    const CelestialSystem* filteredSystem = paramMap.getSystemByName("System A");
+    assert(filteredSystem != nullptr);
+    assert(filteredSystem->getQuantity() == 1);  // Осталась только "Alpha"
+    assert(filteredSystem->getBodyByName("Alpha") != nullptr);
+    assert(filteredSystem->getBodyByName("Beta") == nullptr);
+    cout << "Фильтрация по светимости работает корректно\n" << endl;
+
+    cout << "Тест поворота карты" << endl;
+    paramMap.rotateMap(90);
+
+    filteredSystem = paramMap.getSystemByName("System A");
+    assert(filteredSystem != nullptr);
+    assert(filteredSystem->getQuantity() == 1);
+    double ra = filteredSystem->getBodyByName("Alpha")->getRightAscension();
+    assert(ra >= 89.9 && ra <= 90.1);  // Допустимая погрешность
+    cout << "Поворот карты работает корректно\n" << endl;
+
+    cout << "Тесты SkyMap пройдены успешно!" << endl;
+}
