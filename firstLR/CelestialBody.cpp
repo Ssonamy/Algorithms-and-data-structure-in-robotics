@@ -34,11 +34,9 @@ string CelestialBody::getName() const {
 void CelestialBody::setRightAscension(double newRightAscension) {
 	rightAscension = normalizeAngle(newRightAscension);
 }
-
 void CelestialBody::setDeclination(double newDeclination) {
 	declination = validateDeclination(newDeclination);
 }
-
 void CelestialBody::setMagnitude(double newMagnitude) {
 	magnitude = validateMagnitude(newMagnitude);
 }
@@ -58,21 +56,18 @@ void CelestialBody::printInfo() const {
 double CelestialBody::normalizeAngle(double angle) {
 	return fmod(fmod(angle, 360.0) + 360.0, 360.0);
 }
-
 double CelestialBody::validateDeclination(double dec) {
 	if (dec < -90.0 || dec > 90.0) {
 		throw invalid_argument("Склонение должно быть в диапазоне от -90 до 90 градусов.");
 	}
 	return dec;
 }
-
 double CelestialBody::validateMagnitude(double mag) {
 	if (mag < -30.0 || mag > 30.0) {
 		throw invalid_argument("Недопустимое значение видимой звездной величины.");
 	}
 	return mag;
 }
-
 string CelestialBody::validateName(const string& n) {
 	if (n.empty()) {
 		return "Unnamed";

@@ -35,3 +35,16 @@ int autoInt(){
 		return stoi(input);
 	}
 }
+
+double autoDouble() {
+	while (true) {
+		string input;
+		cout << "Введите: ";
+		cin >> input;
+		if (!isDouble(input)) {
+			cout << "Введите корректное число.\n" << endl;
+			continue;
+		}
+		return stod(input);
+	}
+}

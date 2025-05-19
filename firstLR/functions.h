@@ -5,9 +5,13 @@ bool isInt(const std::string& x);
 
 bool isDouble(const std::string& x);
 
-int firstLR();
-
 int autoInt();
+
+double autoDouble();
+
+
+
+int firstLR();
 
 bool secondLrFile();
 

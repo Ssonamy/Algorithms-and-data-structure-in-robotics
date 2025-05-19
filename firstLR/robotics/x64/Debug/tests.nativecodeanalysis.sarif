@@ -26,7 +26,7 @@
             "analysisTarget"
           ],
           "hashes": {
-            "sha-256": "809556e8575969bf6db0392e7bce332e42db4b161b0c50d8176b51addf9efcd0"
+            "sha-256": "e13722b0d6ff8fcabc4ff1780e898a674d1ded417522efedecd58715075d000a"
           }
         },
         {
@@ -66,7 +66,7 @@
             "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/celestialsystem.h"
           },
           "hashes": {
-            "sha-256": "e4d43034940c2f52718b484f3ef77cd71076a080fd265e0d2d333f4770212fa9"
+            "sha-256": "cc45cae6908e5bbd75653b7f692166abbd702becfd1c0ee6c83d40802f6c02a6"
           }
         },
         {
@@ -74,7 +74,7 @@
             "uri": "file:///c:/users/levsa/source/repos/ssonamy/all-within-the-framework-of-studies/robotics/firstlr/skymap.h"
           },
           "hashes": {
-            "sha-256": "1d31fc4f928d211ec37f267643f576d1181ab1826c2912081f61c63174046490"
+            "sha-256": "b8081f25c03283d63f49886ecedbb6291a9b14119a353d3a4eaa2ab5233ec368"
           }
         }
       ]

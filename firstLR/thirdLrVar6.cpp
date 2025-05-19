@@ -17,6 +17,7 @@ vector<shared_ptr<SkyMap>> maps;
 // Объявление функций заранее, чтоб ничего не ломалось
 static void addBody();
 static void addSystem();
+static void addMap();
 
 // Вспомогательные функции
     // Установление яркости
@@ -202,6 +203,7 @@ static void printInfo(shared_ptr<CelestialBody> manuallyAddedCelestialBody) {
 template<typename T>
 static void printAll(const vector<shared_ptr<T>>& items) {
     int i = 1;
+    cout << endl;
     for (const auto& item : items) {
         cout << i << ". " << item->getName() << endl;
         ++i;
@@ -212,9 +214,11 @@ static void printAll(const vector<shared_ptr<T>>& items) {
 template<typename T>
 static void printAllInDetail(const vector<shared_ptr<T>>& items) {
     int i = 1;
-    for (const auto& body : items) {
-        cout << endl << i << ". " << body->getName() << endl;
-        body->printInfo();
+
+    cout << endl;
+    for (const auto& item : items) {
+        cout << endl << i << ". " << item->getName() << endl;
+        item->printInfo();
         i++;
         cout << endl;
     }
@@ -228,10 +232,13 @@ static void printShowMenu(string type) {
         cout << "0. Для подробной информации по каждому телу" << endl;
         cout << "Номер тела. Для подробной информации по этому телу" << endl;
     }
-    else {
+    else if (type == "system") {
         cout << "0. Для подробной информации по каждой системе" << endl;
         cout << "Номер системы. Для подробной информации по этой системе" << endl;
-
+    }
+    else if (type == "map") {
+        cout << "0. Для подробной информации по каждой карте" << endl;
+        cout << "Номер карты. Для подробной информации по этой карте" << endl;
     }
     cout << "-1. Для возвращения в меню" << endl;
 }
@@ -267,9 +274,12 @@ static void save(shared_ptr<CelestialBody> manuallyAddedCelestialBody) {
 
 }
 
+
+
     // Добавление если не найдено экземпляров
 static void additionalAdding(string type) {
     bool mainFlag = true;
+
     while (mainFlag) {
         if (type == "body") {
             cout << endl << "Не добавлено ни одого тела." << endl;
@@ -281,6 +291,11 @@ static void additionalAdding(string type) {
             cout << "Добавить систему? \nВведите: \n1 - Да \n2 - Нет" << endl;
         }
 
+        else if (type == "map"){
+            cout << endl << "Не добавлено ни одной карты." << endl;
+            cout << "Добавить карту? \nВведите: \n1 - Да \n2 - Нет" << endl;
+        }
+
         int emptyIf = autoInt();
 
         if (emptyIf == 1 && type == "body") {
@@ -289,9 +304,15 @@ static void additionalAdding(string type) {
             break;
         }
 
-        else if(emptyIf == 1) {
+        else if(emptyIf == 1 && type == "system") {
             cout << endl;
             addSystem();
+            break;
+        }
+
+        else if (emptyIf == 1 && type == "map") {
+            cout << endl;
+            addMap();
             break;
         }
 
@@ -309,33 +330,203 @@ static void additionalAdding(string type) {
     }
 }
 
-static void deletingCelestials(shared_ptr<CelestialBody> selectedEntity, int choice) {
-    cout << "Удалить тело? (это навсегда)\n1 - Да\n2 - Нет" << endl;
-    int confirm = autoInt();
+    // Добавление если найдены экзепляры системы
+static int addingSaved(shared_ptr<CelestialSystem> selectedSystem) {
+    bool addFlag = true;
 
-    if (confirm == 1) {
-        // Удаление из всех систем
-        for (auto& system : systems) {
-            system->removeBody(selectedEntity);
+    while (addFlag) {
+        vector<shared_ptr<CelestialBody>> availableBodies;
+
+        for (const auto& body : bodies) {
+            if (!selectedSystem->isBodyInSystemByName(body->getName())) {
+                availableBodies.push_back(body);
+            }
         }
 
-        // Удаление из глобального списка тел
-        bodies.erase(bodies.begin() + (choice - 1));
-        cout << "Тело удалено.\n" << endl;
+        if (availableBodies.empty()) {
+            cout << "Нет тел, доступных для добавления.\n" << endl;
+            return 0;
+        }
+
+        cout << "Добавить сохраненное тело?\nВведите:\n1 - Да\n2 - Нет" << endl;
+        int addIf = autoInt();
+        cout << endl;
+
+        if (addIf == 1) {
+            printAll(availableBodies);
+
+            cout << endl << "Введите номер тела для добавления" << endl;
+            int addIndex = autoInt();
+            cout << endl;
+
+            if (addIndex > 0 && static_cast<size_t>(addIndex) <= availableBodies.size()) {
+                shared_ptr<CelestialBody> selectedBody = availableBodies[addIndex - 1];
+                selectedSystem->addBody(selectedBody);
+                cout << "Выбранное тело \"" << selectedBody->getName() << "\" успешно добавлено!" << endl << endl;
+            }
+            else {
+                cout << "Некорректное значение." << endl << endl;
+            }
+        }
+
+        else if (addIf == 2) {
+            return 0;
+        }
+
+        else {
+            cout << "Некорректное значение" << endl << endl;
+            break;
+        }
+    }
+    return 1;
+}
+
+    // Перегрузка для карты
+static int addingSaved(shared_ptr<SkyMap> selecetedMap) {
+    bool addFlag = true;
+
+    while (addFlag) {
+        vector<shared_ptr<CelestialSystem>> availableSystems;
+
+        for (const auto& system : systems)
+            if (!selecetedMap->isSystemInMapByName(system->getName())) {
+                availableSystems.push_back(system);
+            }
+
+
+        if (availableSystems.empty()) {
+            cout << "Нет систем, доступных для добавления.\n" << endl;
+            return 0;
+        }
+
+
+        cout << "Добавить сохраненную систему? \nВведите: \n1 - Да \n2 - Нет" << endl;
+        int addIf = autoInt();
+        cout << endl;
+
+        if (addIf == 1) {
+            printAll(availableSystems);
+
+            cout << endl << "Введите номер системы для добавления" << endl;
+            int addIndex = autoInt();
+            cout << endl;
+
+            if (static_cast<size_t>(addIndex) <= availableSystems.size() && addIndex > 0) {
+                shared_ptr<CelestialSystem> selectedSystem = availableSystems[addIndex - 1];
+                selecetedMap->addSystem(selectedSystem);
+                cout << "Выбранная система \"" << selectedSystem->getName() << "\" успешно добавлено!" << endl << endl;
+
+            }
+            else {
+                cout << "Некорректное значение." << endl << endl;
+            }
+        }
+
+        else if (addIf == 2) {
+            return 0;
+        }
+
+        else {
+            cout << "Некорректное значение." << endl << endl;
+        }
+    }
+    return 1;
+}
+
+static void autoAddingMap(){
+    // Если нет карт, добавить или выйти
+    if (maps.size() == 0) {
+        additionalAdding("map");
+        if (maps.size() <= 0) {
+            return;
+        }
+
+    }
+    // Для выбора карты 
+    if (maps.size() > 0) {
+        cout << endl << "Сохраненные карты:" << endl;
+        printAll(maps);
+    }
+
+    cout << endl << "Введите номер карты (0 для выхода в меню). ";
+}
+
+    // Перегрузка для тел
+static void deletingCelestials(shared_ptr<CelestialBody> selectedEntity, int choice) {
+    cout << "Удалить тело? (это навсегда)\n1 - Да\n2 - Нет" << endl;
+    bool deleteFlag = true;
+
+    while (deleteFlag) {
+    int confirm = autoInt();
+
+        if (confirm == 1) {
+            // Удаление из всех систем
+            for (auto& system : systems) {
+                system->removeBody(selectedEntity);
+            }
+
+            // Удаление из глобального списка тел
+            bodies.erase(bodies.begin() + (choice - 1));
+            cout << "Тело удалено.\n" << endl;
+            deleteFlag = false;
+        }
+        else if (confirm == 2) {
+            break;
+        }
+        else {
+            cout << "Некорректное значение" << endl << endl;
+            continue;
+
+        }
+    }
+} 
+
+    // Перегрузка для систем
+static void deletingCelestials(shared_ptr<CelestialSystem> selectedEntity, int choice) {
+    cout << "Удалить систему? (это навсегда)\n1 - Да\n2 - Нет" << endl;
+    bool deleteFlag = true;
+
+    while (deleteFlag) {
+
+        int confirm = autoInt();
+        if (confirm == 1) {
+            // Удаление из всех карт
+            for (auto& map : maps) {
+                map->removeSystemByPointer(selectedEntity);
+            }
+
+            // Удаление из глобального списка систем
+            systems.erase(systems.begin() + (choice - 1));
+            cout << "Система удалена.\n" << endl;
+            deleteFlag = false;
+            break;
+        }
+
+        if (confirm == 2) {
+            break;
+        }
+
+        else {
+            cout << "Некорректное значение" << endl << endl;
+            continue;
+        }
     }
 }
 
+
+
+
     // Работа с выбраным телом
-static int changeParamsDeleteBody(int choice, string type) {
+static int changeParamsDeleteBody(int choice) {
     bool mainFlag = true;
     shared_ptr<CelestialBody> selectedBody = bodies[choice - 1];
 
     while (mainFlag) {
         cout << "\nВыбрано тело: " << selectedBody->getName() << endl;
         cout << "Введите: " << endl;
-        cout << "1. Изменить название" << endl; // одинаково
-        cout << "2. Изменить прямое восхождение" << endl;   // одинаково
-        cout << "3. Изменить склонение" << endl;    // одинаково
+        cout << "1. Изменить название" << endl;
+        cout << "2. Изменить прямое восхождение" << endl;
+        cout << "3. Изменить склонение" << endl;    
         cout << "4. Изменить видимую звездную величину" << endl;
         cout << "5. Удалить тело" << endl;
         cout << "0. Выбор тела" << endl;
@@ -397,22 +588,23 @@ static int changeParamsDeleteBody(int choice, string type) {
             break;
         }
     }
-    return 1;;
-
+    return 1;
 }
+
 static int changeParamsDeleteSystem(int choice) {
     bool mainFlag = true;
     shared_ptr<CelestialSystem> selectedSystem = systems[choice - 1];
     const auto& bodiesInSystem = selectedSystem->getMembers();
 
     while (mainFlag) {
+        bool secondFlag = true;
         cout << "\nВыбраная система: " << selectedSystem->getName() << endl;
         cout << "Введите: " << endl;
         cout << "1. Изменить название" << endl; // одинаково
         cout << "2. Изменить прямое восхождение" << endl;   // одинаково
         cout << "3. Изменить склонение" << endl;    // одинаково
         cout << "4. Удалить систему" << endl;
-        cout << "5 .Удалить тело из системы" << endl;
+        cout << "5. Удалить тело из системы" << endl;
         cout << "6. Добавить тело" << endl;
         cout << "0. Выбор системы" << endl;
         cout << "-1. Выход в меню" << endl;
@@ -434,49 +626,31 @@ static int changeParamsDeleteSystem(int choice) {
             changeDec(selectedSystem);      // Склонение
             break;
 
-        case 4: {
-            cout << "Удалить систему? (это навсегда)\n1 - Да\n2 - Нет" << endl;
-            int confirm = autoInt();
-            if (confirm == 1) {
-                // Удаление из всех карт
-                for (auto& map : maps) {
-                    map->removeSystemByPointer(selectedSystem);
-                }
-
-                // Удаление из глобального списка систем
-                systems.erase(systems.begin() + (choice - 1));
-                cout << "Система удалена.\n" << endl;
-                secondFlag = false;
-                break;
-            }
-
-            if (confirm == 2) {
-                break;
-            }
-
-            else {
-                cout << "Некорректное значение" << endl;
-            }
+        case 4: 
+            deletingCelestials(selectedSystem, choice);
+            mainFlag = false;
             break;
-        }
 
         case 5:
-            while (thirdFlag) {
+            if (bodiesInSystem.size() == 0) {
+                cout << "В системе нет тел" << endl;
+                break;
+            }
+
+            while (secondFlag) {
                 cout << "Сохраненные тела:" << endl;
-                for (auto& body : bodiesInSystem) {
-                    cout << body->getName() << endl;
-                }
+                printAll(bodiesInSystem);
                 cout << "Введите номер тела (0 - отмена) . ";
 
-                choice = autoInt() - 1;
-                if (static_cast<size_t>(choice) <= bodiesInSystem.size() && choice > 0) {
-                    cout << "Выбранное тело: " << bodiesInSystem[choice]->getName() << endl;
-                    selectedSystem->removeBody(bodiesInSystem[choice]);
+                int deleter = autoInt() - 1;
+                if (static_cast<size_t>(deleter) <= bodiesInSystem.size() - 1) {
+                    cout << "Выбранное тело: " << bodiesInSystem[deleter]->getName() << " удалено" << endl;
+                    selectedSystem->removeBody(bodiesInSystem[deleter]);
                     break;
                 }
 
-                else if (choice == 0) {
-                    thirdFlag = false;
+                else if (deleter == -1) {
+                    secondFlag = false;
                     break;
                 }
 
@@ -487,85 +661,31 @@ static int changeParamsDeleteSystem(int choice) {
             break;
 
         case 6:
-            thirdFlag = true;
-            while (thirdFlag) {
+            secondFlag = true;
+
+            while (secondFlag) {
                 if (bodies.size() == 0) {
-                    cout << endl << "Не добавлено ни одого тела." << endl;
-                    cout << "Добавить тело? \nВведите: \n1 - Да \n2 - Нет" << endl;
-                    int emptyIf = autoInt();
-                    if (emptyIf == 1) {
-                        size_t oldSize = bodies.size();
-                        addBody();
-
-
-                        if (bodies.size() > oldSize) {
-                            selectedSystem->addBody(bodies.back());
-                        }
-
-                        else {
-                            cout << "Тело не было добавлено. Повторите попытку." << endl;
-                        }
-
-                        thirdFlag = false;
+                    additionalAdding("body");
+                    if (bodies.size() <= 0) {
                         break;
                     }
-
-                    else if (emptyIf == 2) {
-                        cout << endl;
-                        thirdFlag = false;
-                        break;
-                    }
-
-                    else {
-                        cout << "Некорректное значение" << endl;
-                        break;
-                    }
+                    selectedSystem->addBody(bodies.back());
+                    break;
                 }
 
                 else {
-                    cout << "Добавить сохраненное тело? \nВведите: \n1 - Да \n2 - Нет" << endl;
-                    int addIf = autoInt();
-                    cout << endl;
+                    int output = addingSaved(selectedSystem);
 
-                    if (addIf == 1) {
-                        cout << "Список тел:" << endl;
-                        for (const auto& body : bodies) {
-                            int i = 1;
-                            i++;
-                            cout << i << ". " << body->getName() << endl;
-                        }
-                        cout << endl << "Введите номер тела для добавления" << endl;
-                        int addIndex = autoInt();
-                        cout << endl;
-
-                        if (static_cast<size_t>(addIndex) <= bodies.size() && addIndex > 0) {
-                            shared_ptr<CelestialBody> selectedBody = bodies[addIndex - 1];
-                            if (not(selectedSystem->isBodyInSystemByName(selectedBody->getName()))) {
-                                cout << "Выбранное тело " << selectedBody->getName() << " успешно добавлено!" << endl << endl;
-                            }
-                            selectedSystem->addBody(selectedBody);
-                        }
-
-                        else {
-                            cout << "Некорректное значение." << endl << endl;
-                        }
-                    }
-
-                    else if (addIf == 2) {
-                        thirdFlag = false;
+                    if (output == 0) {
                         break;
                     }
 
-                    else {
-                        cout << "Некорректное значение" << endl << endl;
-                        break;
-                    }
                 }
             }
             break;
+
         case -1:
-            secondFlag = false;
-            continue;
+            return 0;
 
         case 0:
             secondFlag = false;
@@ -575,8 +695,8 @@ static int changeParamsDeleteSystem(int choice) {
             cout << "Некорректное значение" << endl;
             break;
         }
-    return 1;
     }
+    return 1;
 }
 
 
@@ -619,14 +739,16 @@ static void showBodies() {
 
         if (bodies.size() == 0) {
             additionalAdding("body");
-            continue;
+            if (bodies.size() <= 0) {
+                break;
+            }
         }
 
         cout << endl << "Сохраненные тела:" << endl;
         printAll(bodies);
 
         printShowMenu("body");
-        int choice = autoInt() - 1, i = 1;
+        int choice = autoInt() - 1;
 
         if (choice == -2) {
             mainFlag = false;
@@ -636,7 +758,7 @@ static void showBodies() {
             printAllInDetail(bodies);
         }
 
-        else if (static_cast<size_t>(choice) <= bodies.size()) {
+        else if (static_cast<size_t>(choice) <= bodies.size() - 1) {
             bodies[choice]->printInfo();
             cout << endl;
         }
@@ -657,7 +779,10 @@ static void changeDeliteBodies() {
         // Если нет тел, добавить или выйти
         if (bodies.size() == 0) {
             additionalAdding("body");
-            continue;
+            
+            if (bodies.size() <= 0) {
+                break;
+            }
         }
 
         // Варианты выбора
@@ -673,7 +798,7 @@ static void changeDeliteBodies() {
         }
 
         else if (choice > 0 && static_cast<size_t>(choice) <= bodies.size()) {
-            int output = changeParamsDeleteBody(choice, "body");
+            int output = changeParamsDeleteBody(choice);
             if (output == 0) {
                 mainFlag = false;
                 break;
@@ -711,74 +836,20 @@ static void addSystem() {
 
     // Добавление тел в систему
     bool addFlag = true;
+
     while (addFlag) {
         if (bodies.size() == 0) {
-            cout << endl << "Не добавлено ни одого тела." << endl;
-            cout << "Добавить тело? \nВведите: \n1 - Да \n2 - Нет" << endl;
-            int emptyIf = autoInt();
-            if (emptyIf == 1) {
-                size_t oldSize = bodies.size();
-                addBody();
-
-               
-                if (bodies.size() > oldSize) {
-                    manuallyAddedCelestialSystem->addBody(bodies.back());
-                }
-                else {
-                    cout << "Тело не было добавлено. Повторите попытку." << endl;
-                }
-                addFlag = false;
+            additionalAdding("body");
+            if (bodies.size() <= 0) {
                 break;
             }
-
-            else if (emptyIf == 2) {
-                cout << endl;
-                addFlag = false;
-                break;
-            }
-
-            else {
-                cout << "Некорректное значение" << endl;
-                break;
-            }
+            manuallyAddedCelestialSystem->addBody(bodies.back());
+            break;
         }
 
         else {
-            cout << "Добавить сохраненное тело? \nВведите: \n1 - Да \n2 - Нет" << endl;
-            int addIf = autoInt();
-            cout << endl;
-
-            if (addIf == 1) {
-                int i = 1;
-                cout << "Список тел:" << endl;
-                for (const auto& body : bodies) {
-                    cout << i << ". " << body->getName() << endl;
-                    i++;
-                }
-                cout << endl << "Введите номер тела для добавления" << endl;
-                int addIndex = autoInt();
-                cout << endl;
-
-                if (static_cast<size_t>(addIndex) <= bodies.size() && addIndex > 0){
-                    shared_ptr<CelestialBody> selectedBody = bodies[addIndex - 1];
-                    if (not(manuallyAddedCelestialSystem->isBodyInSystemByName(selectedBody->getName()))) {
-                        cout << "Выбранное тело " << selectedBody->getName() << " успешно добавлено!" << endl << endl;
-                    }
-                        manuallyAddedCelestialSystem->addBody(selectedBody);
-                }
-
-                else {
-                    cout << "Некорректное значение." << endl << endl;
-                }
-            }
-
-            else if (addIf == 2) {
-                addFlag = false;
-                break;
-            }
-
-            else{
-                cout << "Некорректное значение" << endl << endl;
+            int output = addingSaved(manuallyAddedCelestialSystem);
+            if (output == 0) {
                 break;
             }
         }
@@ -817,7 +888,6 @@ static void addSystem() {
     // Отображение всех систем + информации по запросу
 static void showSystems() {
     bool mainFlag = true;
-    int i = 1;
 
     while (mainFlag) {
 
@@ -832,7 +902,6 @@ static void showSystems() {
 
             printShowMenu("system");
             int choice = autoInt() - 1;
-            i = 1;
 
             if (choice == -2) {
                 mainFlag = false;
@@ -844,7 +913,7 @@ static void showSystems() {
                 continue;
             }
 
-            else if (static_cast<size_t>(choice) <= systems.size()) {
+            else if (static_cast<size_t>(choice) <= systems.size() - 1) {
                 systems[choice]->printInfo();
                 cout << endl;
                 continue;
@@ -869,7 +938,13 @@ static void changeDeliteSystems() {
         // Если нет систем, добавить или выйти
         if (systems.size() == 0) {
             additionalAdding("system");
-            continue;
+
+            if (systems.size() > 0) {
+                continue;
+            }
+            else {
+                break;
+            }
         }
 
         if (systems.size() > 0) {
@@ -882,14 +957,24 @@ static void changeDeliteSystems() {
 
         // Работа с выбраным телом
         if (choice == 0) {
-            mainFlag = false;
+            return;
         }
 
-        else if (choice > 0 && static_cast<size_t>(choice) <= systems.size()) {
+        else if (static_cast<size_t>(choice) <= systems.size()) {
+            int output = changeParamsDeleteSystem(choice);
+            if (output == 0) {
+                mainFlag = false;
+                break;
+            }
+        }
 
+        else {
+            cout << "Некоррректное значение" << endl;
         }
     }
 }
+
+
 
 
     // Создание карты
@@ -899,78 +984,32 @@ static void addMap() {
 
     cout << "Создание карты:" << endl << endl;
 
+    cout << "Введите название карты: ";
+    cin >> input;
+    manuallyAddedSkyMap->setName(input);
+
+
     // Добавление тел в систему
     bool addFlag = true;
     while (addFlag) {
         if (systems.size() == 0) {
-            cout << endl << "Не добавлено ни одной системы." << endl;
-            cout << "Добавить систему? \nВведите: \n1 - Да \n2 - Нет" << endl;
-            int emptyIf = autoInt();
-            if (emptyIf == 1) {
-                size_t oldSize = systems.size();
-                addSystem();
-
-
-                if (systems.size() > oldSize) {
-                    manuallyAddedSkyMap->addSystem(systems.back());
-                }
-                else {
-                    cout << "Система не была добавлена. Повторите попытку." << endl;
-                }
-                addFlag = false;
+            additionalAdding("system");
+            if (systems.size() <= 0) {
                 break;
             }
+            manuallyAddedSkyMap->addSystem(systems.back());
+            break;
 
-            else if (emptyIf == 2) {
-                cout << endl;
-                addFlag = false;
-                break;
-            }
-
-            else {
-                cout << "Некорректное значение" << endl;
-                break;
-            }
         }
 
         else {
-            cout << "Добавить сохраненную систему? \nВведите: \n1 - Да \n2 - Нет" << endl;
-            int addIf = autoInt();
-            cout << endl;
 
-            if (addIf == 1) {
-                int i = 1;
-                cout << "Список систем:" << endl;
-                for (const auto& system : systems) {
-                    cout << i << ". " << system->getName() << endl;
-                    i++;
-                }
-                cout << endl << "Введите номер тела для добавления" << endl;
-                int addIndex = autoInt();
-                cout << endl;
+            int output = addingSaved(manuallyAddedSkyMap);
 
-                if (static_cast<size_t>(addIndex) <= systems.size() && addIndex > 0) {
-                    shared_ptr<CelestialSystem> selectedSystem = systems[addIndex - 1];
-                    if (not(manuallyAddedSkyMap->isSystemInSystemByName(selectedSystem->getName()))) {
-                        cout << "Выбранное тело " << selectedSystem->getName() << " успешно добавлено!" << endl << endl;
-                    }
-                    manuallyAddedSkyMap->addSystem(selectedSystem);
-                }
-
-                else {
-                    cout << "Некорректное значение." << endl << endl;
-                }
-            }
-
-            else if (addIf == 2) {
-                addFlag = false;
+            if (output == 0) {
                 break;
             }
 
-            else {
-                cout << "Некорректное значение" << endl << endl;
-                break;
-            }
         }
     }
 
@@ -983,8 +1022,8 @@ static void addMap() {
         switch (choice)
         {
         case 1: //Выводить
-            cout << endl;
-            manuallyAddedSkyMap->printAll();
+            cout << endl << endl;
+            manuallyAddedSkyMap->printInfo();
             cout << endl;
             infoFlag = false;
             break;
@@ -1025,21 +1064,149 @@ static void addMap() {
     }
 }
 
+    // Отображение всех карт
+static void showMaps() {
+    bool mainFlag = true;
+
+    while (mainFlag) {
+
+        if (maps.size() == 0) {
+            additionalAdding("map");
+            continue;
+        }
+
+        if (maps.size() > 0) {
+            cout << endl << "Сохраненные карты:" << endl;
+            printAll(maps);
+
+            printShowMenu("map");
+            int choice = autoInt() - 1;
+
+            if (choice == -2) {
+                mainFlag = false;
+            }
+
+            else if (choice == -1) {
+                cout << endl;
+                printAllInDetail(maps);
+                continue;
+            }
+
+            else if (static_cast<size_t>(choice) <= maps.size() - 1) {
+                maps[choice]->printInfo();
+                cout << endl;
+                continue;
+            }
+
+            else {
+                cout << "Некорректное значение" << endl;
+            }
+        }
+        else { break; }
+    }
+
+}
+
+    // Добавление системы на карту
+static void addSystemsToMap() {
+    bool mainFlag = true;
+
+    bool secondFlag = true;
+    autoAddingMap();
+
+    while (mainFlag) {
+
+        int choice = autoInt();
+
+        if (choice == 0) {
+            return;
+        }
+
+        else if (static_cast<size_t>(choice) <= maps.size()) {
+            shared_ptr<SkyMap> selectedMap = maps[choice - 1];
+
+            while (secondFlag) {
+                if (systems.size() == 0) {
+                    additionalAdding("system");
+                    if (systems.size() <= 0) {
+                        break;
+                    }
+                    selectedMap->addSystem(systems.back());
+                    break;
+                }
+                else {
+                    int output = addingSaved(selectedMap);
+
+                    if (output == 0) {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+
     // Поворот карты
-static void rotate(){
-    cout << "Введите на сколько градусов повернуть карту" << endl;
-    int degrees = autoInt();
-    const auto& map = maps[0];
+static void rotate() {
+    autoAddingMap();
+    if (maps.size() == 0) {
+        return;
+    }
 
-    map->rotateMap(degrees);
+    bool mainFlag = true; 
 
-    cout << "Обновленные значения:" << endl;
-    map->printAll();
+    while (mainFlag) {
+
+        int choice = autoInt();
+
+        if (choice == 0) {
+            return;
+        }
+
+        else if (static_cast<size_t>(choice) <= maps.size()) {
+            shared_ptr<SkyMap> selectedMap = maps[choice - 1];
+            auto copiedMap = selectedMap->deepCopy();
+            maps.push_back(copiedMap);
+
+            cout << "Введите на сколько градусов повернуть карту" << endl;
+            int degrees = autoInt();
+
+            copiedMap->rotateMap(degrees);
+
+            cout << "Обновленные значения:" << endl;
+            copiedMap->printInfo();
+        }
+    }
 }
 
     // Фильтрация по яркости
 static void filtMap() {
+    autoAddingMap();
+    if (maps.size() == 0) {
+        return;
+    }
+    bool mainFlag = true;
 
+    while (mainFlag) {
+
+        int choice = autoInt();
+
+        if (choice == 0) {
+            return;
+        }
+
+        else if (static_cast<size_t>(choice) <= maps.size()) {
+            shared_ptr<SkyMap> selectedMap = maps[choice - 1];
+
+            cout << "Введите значение яркости." << endl;
+            double filtring = autoDouble();
+            auto copiedMap = selectedMap->filterByMagnitude(filtring);
+            maps.push_back(copiedMap);
+            copiedMap->printInfo();
+            cout << endl;
+            break;
+        }
+    }
 }
 
 
@@ -1060,9 +1227,11 @@ bool thirdLrVar6() {
         cout << "5. Просмотреть все системы" << endl;
         cout << "6. Изменить/удалить систему" << endl;
         cout << "7. Создать карту" << endl;
-        cout << "8. Повернуть карту" << endl;
-        cout << "9. Отфильтровать по яркости" << endl;
-        cout << "10. Тестирование " << endl;
+        cout << "8. Посмотреть все карты" << endl;
+        cout << "9. Добавить систему на карту" << endl;
+        cout << "10. Повернуть карту" << endl;
+        cout << "11. Отфильтровать по яркости" << endl;
+        cout << "12. Тестирование " << endl;
         cout << "0. Назад. " << endl;
         cout << "-1. Выход. " << endl;
 
@@ -1100,15 +1269,23 @@ bool thirdLrVar6() {
             break;
         case 8:
             cout << endl;
-            rotate();
+            showMaps();
             break;
         case 9:
+            cout << endl;
+            addSystemsToMap();
+            break;
+        case 10:
+            cout << endl;
+            rotate();
+            break;
+        case 11:
             cout << endl;
             filtMap();
             break;
 
         // Блок тестирования 
-        case 10:
+        case 12:
             while (mainFlag)
             {
                 cout << "____________________" << endl;
@@ -1166,9 +1343,10 @@ bool thirdLrVar6() {
 
             cout << "Некорректное значение." << endl;
             break;
+        // Назад
         case 0:
             return 0;
-
+        // Выход
         case -1:
             return 1;
         }

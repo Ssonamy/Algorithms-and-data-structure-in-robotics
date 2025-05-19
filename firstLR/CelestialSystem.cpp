@@ -70,11 +70,12 @@ void CelestialSystem::removeBody(const shared_ptr<CelestialBody>& bodyToRemove) 
     }
 }
 
-
+// Перегрузка без возможности изменения
 const vector<shared_ptr<CelestialBody>>& CelestialSystem::getMembers() const {
     return members;
 }
 
+// Перегрузка с возможностью изменения
 vector<shared_ptr<CelestialBody>>& CelestialSystem::getMembers() {
     return members;
 }
@@ -85,7 +86,10 @@ int CelestialSystem::getQuantity() const {
 
 
 void CelestialSystem::printInfo() const {
+    double rightAscension = getRightAscension(), declination = getDeclination();
+
     cout << "Гравитационная система: " << getName() << endl;
+    cout << "Координаты системы: " << "Прямое восхождение - " << rightAscension << "; Склонение - " << declination << endl;
 
     cout << "\nЧлены системы (" << members.size() << "):\n";
     for (size_t i = 0; i < members.size(); ++i) {

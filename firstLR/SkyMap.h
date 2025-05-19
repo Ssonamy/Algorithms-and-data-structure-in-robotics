@@ -19,6 +19,8 @@ public:
     SkyMap(const SkyMap& other);
     std::shared_ptr<SkyMap> deepCopy() const;
 
+    void setName(const std::string& newName);
+
     void addSystem(const std::shared_ptr<CelestialSystem>& system);
     void removeSystem(int index);
     void removeSystemByName(const std::string& name);
@@ -26,10 +28,11 @@ public:
 
     int getQuantity() const;
     const CelestialSystem* getSystemByName(const std::string& name) const;
+    std::string getName() const;
 
-    void printAll() const;
-    void filterByMagnitude(double maxMag);
+    void printInfo() const;
+    std::shared_ptr<SkyMap> filterByMagnitude(double maxMag);    
     void rotateMap(double angleDegrees);
 
-    bool isSystemInSystemByName(const std::string& name);
+    bool isSystemInMapByName(const std::string& name);
 };
