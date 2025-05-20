@@ -8,5 +8,17 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Npgsql" Version="9.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="1.4 Fourth Laboratory\" />
+      <Folder Include="2.5 Fifth Practical\" />
+      <Folder Include="2.6 Sixth Practical\" />
+      <Folder Include="1.5 Fifth Laboratory\" />
+      <Folder Include="1.6 Sixth Laboratory\" />
+    </ItemGroup>
+
 </Project>
  

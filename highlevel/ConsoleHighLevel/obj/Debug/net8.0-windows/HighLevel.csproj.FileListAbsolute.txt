@@ -17,3 +17,13 @@ C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highleve
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\HighLevel.pdb
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\HighLevel.genruntimeconfig.cache
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\ref\HighLevel.dll
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\LibraryCatalog.ConnectionForm.resources
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\bin\Debug\net8.0-windows\Npgsql.dll
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\HighLevel.csproj.AssemblyReference.cache
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\HighLevel.csproj.Up2Date
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\LibraryCatalog.LibraryMainForm.resources
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\Laba3Var27.FlightForm.resources
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\Laba3Var27.InfoForm.resources
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\Laba3Var27.FlightMainForm.resources
