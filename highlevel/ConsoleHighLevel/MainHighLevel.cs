@@ -4,6 +4,7 @@ using calcWInForms;
 using ThirdPractik;
 using LibraryCatalog;
 using Laba3Var27;
+using CSVEditor;
 
 namespace HighLevel
 {
@@ -131,7 +132,8 @@ namespace HighLevel
                             "2.1 'Веб-обозреватель'\n" +
                             "3. 'Двумерный массив'\n" +
                             "4. 'Библиотека' \n" +
-                            "5. '' \n" +
+                            "5.1. '' \n" +
+                            "5.2. 'Редактор CVS' \n" +
                             "6. '' \n" +
                             "0. Назад\n" +
                             "-1. Выход \n" +
@@ -172,9 +174,11 @@ namespace HighLevel
                                     OpenOrActivateForm("ConnectionForm", new ConnectionForm());
                                     break;
 
-                                case "5":
+                                case "5.2":
                                     Console.Write("\n");
+                                    Application.EnableVisualStyles();
 
+                                    OpenOrActivateForm("CVSForm", new CVSForm());
                                     break;
 
                                 case "6":

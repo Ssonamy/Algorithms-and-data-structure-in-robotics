@@ -27,3 +27,4 @@ C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highleve
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\Laba3Var27.FlightForm.resources
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\Laba3Var27.InfoForm.resources
 C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\Laba3Var27.FlightMainForm.resources
+C:\Users\levsa\source\repos\Ssonamy\all-within-the-framework-of-studies\highlevel\highlevel\ConsoleHighLevel\obj\Debug\net8.0-windows\CSVEditor.CVSForm.resources
