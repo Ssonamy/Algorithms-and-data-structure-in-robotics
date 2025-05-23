@@ -84,6 +84,13 @@ int CelestialSystem::getQuantity() const {
     return static_cast<int>(members.size());
 }
 
+const shared_ptr<CelestialBody> CelestialSystem::getBodyByName(const string& name) const {
+    auto it = nameIndexMap.find(name);
+    if (it != nameIndexMap.end()) {
+        return members[it->second];
+    }
+    return nullptr;
+}
 
 void CelestialSystem::printInfo() const {
     double rightAscension = getRightAscension(), declination = getDeclination();
@@ -107,12 +114,4 @@ bool CelestialSystem::isBodyInSystemByName(const string& name) {
     else {
         return false;
     }
-}
-
-const shared_ptr<CelestialBody> CelestialSystem::getBodyByName(const string& name) const {
-    auto it = nameIndexMap.find(name);
-    if (it != nameIndexMap.end()) {
-        return members[it->second];
-    }
-    return nullptr;
 }

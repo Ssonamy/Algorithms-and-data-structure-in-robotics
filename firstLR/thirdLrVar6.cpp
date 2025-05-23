@@ -886,7 +886,7 @@ static void addSystem() {
 }
 
     // Отображение всех систем + информации по запросу
-static void showSystems() {
+static void showSystems() { 
     bool mainFlag = true;
 
     while (mainFlag) {
@@ -932,8 +932,6 @@ static void changeDeliteSystems() {
     bool mainFlag = true;
 
     while (mainFlag) {
-        bool secondFlag = true;
-        bool thirdFlag = true;
 
         // Если нет систем, добавить или выйти
         if (systems.size() == 0) {
@@ -1111,11 +1109,10 @@ static void showMaps() {
 static void addSystemsToMap() {
     bool mainFlag = true;
 
-    bool secondFlag = true;
     autoAddingMap();
 
     while (mainFlag) {
-
+        bool secondFlag = true;
         int choice = autoInt();
 
         if (choice == 0) {

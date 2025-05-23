@@ -10,17 +10,6 @@ SkyMap::SkyMap(const vector<shared_ptr<CelestialSystem>> systems, unordered_map<
 SkyMap::SkyMap(const SkyMap& other)
 : systems(other.systems), systemNameIndexMap(other.systemNameIndexMap), name(other.name) {}
 
-void SkyMap::addSystem(const shared_ptr<CelestialSystem>& system) {
-    string name = system->getName();
-
-    if (systemNameIndexMap.find(name) == systemNameIndexMap.end()) {
-        systems.push_back(system);
-        systemNameIndexMap[name] = static_cast<int>(systems.size()) - 1;
-    }
-    else {
-        cerr << "Система с именем \"" << name << "\" уже существует в системе.\n";
-    }
-}
 
 shared_ptr<SkyMap> SkyMap::deepCopy() const {
     vector<shared_ptr<CelestialSystem>> newSystems; 
@@ -40,34 +29,18 @@ void SkyMap::setName(const string& newName) {
     name = newName;
 }
 
+void SkyMap::addSystem(const shared_ptr<CelestialSystem>& system) {
+    string name = system->getName();
 
-void SkyMap::removeSystem(int index) {
-    if (index >= 0 && index < static_cast<int>(systems.size())) {
-        string nameToRemove = systems[index]->getName();
-        systems.erase(systems.begin() + index);
-        systemNameIndexMap.erase(nameToRemove);
-
-        for (auto& pair : systemNameIndexMap) {
-            if (pair.second > index) pair.second--;
-        }
-    }
-}
-void SkyMap::removeSystemByName(const string& name) {
-    auto it = systemNameIndexMap.find(name);
-    if (it != systemNameIndexMap.end()) {
-        int index = it->second;
-        systems.erase(systems.begin() + index);
-        systemNameIndexMap.erase(it);
-
-        for (auto& pair : systemNameIndexMap) {
-            if (pair.second > index) pair.second--;
-        }
-        cout << "Система \"" << name << "\" удалена.\n";
+    if (systemNameIndexMap.find(name) == systemNameIndexMap.end()) {
+        systems.push_back(system);
+        systemNameIndexMap[name] = static_cast<int>(systems.size()) - 1;
     }
     else {
-        cerr << "Система с именем \"" << name << "\" не найдена.\n";
+        cerr << "Система с именем \"" << name << "\" уже существует в системе.\n";
     }
 }
+
 void SkyMap::removeSystemByPointer(const shared_ptr<CelestialSystem>& systemToRemove) {
     for (size_t i = 0; i < systems.size(); ++i) {
         if (systems[i] == systemToRemove) {
@@ -99,6 +72,15 @@ const CelestialSystem* SkyMap::getSystemByName(const string& name) const {
     return nullptr;
 }
 
+bool SkyMap::isSystemInMapByName(const string& name)
+{
+    for (const auto& system : systems) {
+        if (system->getName() == name) {
+            return true;
+        }
+    }
+        return false;
+}
 
 void SkyMap::rotateMap(double angleDegrees) {
     for (auto& system : systems) {
@@ -109,16 +91,6 @@ void SkyMap::rotateMap(double angleDegrees) {
             body->setRightAscension(newRA);
         }
     }
-}
-
-bool SkyMap::isSystemInMapByName(const string& name)
-{
-    for (const auto& system : systems) {
-        if (system->getName() == name) {
-            return true;
-        }
-    }
-        return false;
 }
 
 shared_ptr<SkyMap> SkyMap::filterByMagnitude(double maxMag) {

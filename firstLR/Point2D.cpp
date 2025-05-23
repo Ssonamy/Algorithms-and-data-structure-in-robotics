@@ -3,32 +3,32 @@
 
 using namespace std;
 
-// Конструктор инициалихзации
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РёРЅРёС†РёР°Р»РёС…Р·Р°С†РёРё
 Point2D::Point2D(double inputX, double inputY)
 	: x(inputX), y(inputY) {}
 
-// Конструктор по умолчанию
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 Point2D::Point2D()
 	: x(0.0), y(0.0) {}
 
-// Геттер Х
+// Р“РµС‚С‚РµСЂ РҐ
 double Point2D::getX() const { return x; }
 
-// Геттер У
+// Р“РµС‚С‚РµСЂ РЈ
 double Point2D::getY() const { return y; }
 
-// Сеттер Х 
+// РЎРµС‚С‚РµСЂ РҐ 
 void Point2D::setX(double newX) { x = newX; }
 
-// Сеттер У
+// РЎРµС‚С‚РµСЂ РЈ
 void Point2D::setY(double newY) { y = newY; }
 
-// Вывод координаты
+// Р’С‹РІРѕРґ РєРѕРѕСЂРґРёРЅР°С‚С‹
 void Point2D::print() const {
 	cout << "(" << x << ", " << y << ")" << endl;
 }
 
-// Перегрузка оператора ввода для ввода двух значений через пробел
+// РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° РІРІРѕРґР° РґР»СЏ РІРІРѕРґР° РґРІСѓС… Р·РЅР°С‡РµРЅРёР№ С‡РµСЂРµР· РїСЂРѕР±РµР»
 std::istream& operator>>(std::istream& is, Point2D& point) {
 	is >> point.x >> point.y;
 	return is;
