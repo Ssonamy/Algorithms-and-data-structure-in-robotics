@@ -5,6 +5,8 @@ using ThirdPractik;
 using LibraryCatalog;
 using Laba3Var27;
 using CSVEditor;
+using ShapeDrawer;
+using CompanyApp;
 
 namespace HighLevel
 {
@@ -63,9 +65,9 @@ namespace HighLevel
                             "1. 'Разработка консольных приложений на C#' \n" +
                             "2. 'Применение циклических алгоритмов' \n" +
                             "3. 'Расписание рейсов самолетов'\n" +
-                            "4. \n" +
-                            "5. \n" +
-                            "6. \n" +
+                            "4. 'Предприятие'\n" +
+                            "5. ''\n" +
+                            "6. ''\n" +
                             "0. Назад\n" +
                             "-1. Выход \n" +
                             "---------------\n");
@@ -93,7 +95,9 @@ namespace HighLevel
 
                                 case "4":
                                     Console.Write("\n");
+                                    Application.EnableVisualStyles();
 
+                                    OpenOrActivateForm("MainEnterpriceForm", new MainEnterpriceForm());
                                     break;
 
                                 case "5":
@@ -132,9 +136,9 @@ namespace HighLevel
                             "2.1 'Веб-обозреватель'\n" +
                             "3. 'Двумерный массив'\n" +
                             "4. 'Библиотека' \n" +
-                            "5.1. '' \n" +
+                            "5.1. 'Работа с файлами' \n" +
                             "5.2. 'Редактор CVS' \n" +
-                            "6. '' \n" +
+                            "6. 'Рисоватор' \n" +
                             "0. Назад\n" +
                             "-1. Выход \n" +
                             "---------------\n");
@@ -183,7 +187,9 @@ namespace HighLevel
 
                                 case "6":
                                     Console.Write("\n");
+                                    Application.EnableVisualStyles();
 
+                                    OpenOrActivateForm("Drawer", new Drower());
                                     break;
 
                                 case "0":
