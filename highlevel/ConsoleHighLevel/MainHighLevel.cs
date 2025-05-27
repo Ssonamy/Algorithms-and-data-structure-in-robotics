@@ -7,6 +7,8 @@ using Laba3Var27;
 using CSVEditor;
 using ShapeDrawer;
 using CompanyApp;
+using SurfaceScanner;
+using BallCollisionSimulation;
 
 namespace HighLevel
 {
@@ -102,12 +104,16 @@ namespace HighLevel
 
                                 case "5":
                                     Console.Write("\n");
+                                    Application.EnableVisualStyles();
 
+                                    OpenOrActivateForm("MainSurfaceForm", new MainSurfaceForm());
                                     break;
 
                                 case "6":
                                     Console.Write("\n");
+                                    Application.EnableVisualStyles();
 
+                                    OpenOrActivateForm("Colosion", new Colosion());
                                     break;
 
                                 case "0":

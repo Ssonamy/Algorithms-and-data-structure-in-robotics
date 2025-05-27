@@ -9,12 +9,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="HIC.System.Windows.Forms.DataVisualization" Version="1.0.1" />
       <PackageReference Include="Npgsql" Version="9.0.3" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="1.5 Fifth Laboratory\" />
-      <Folder Include="1.6 Sixth Laboratory\" />
     </ItemGroup>
 
 </Project>
