@@ -13,75 +13,87 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="LR1">
+      <UniqueIdentifier>{277d9741-18d9-438d-88a0-24417b6f47cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LR2S">
+      <UniqueIdentifier>{24e2a53e-7de8-4930-8c4b-fac69526adcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LR2V">
+      <UniqueIdentifier>{c79c1e24-ddba-4c76-9bb7-ca4705a27bda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LR3">
+      <UniqueIdentifier>{1703ce28-ee43-48a3-b414-24e9d26075d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="firstLR.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="functions.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="secondLrFile.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="File.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="tests.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Rectangle.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="firstLR.cpp">
+      <Filter>LR1</Filter>
+    </ClCompile>
+    <ClCompile Include="File.cpp">
+      <Filter>LR2S</Filter>
+    </ClCompile>
+    <ClCompile Include="secondLrFile.cpp">
+      <Filter>LR2S</Filter>
     </ClCompile>
     <ClCompile Include="Point2D.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>LR2V</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>LR2V</Filter>
     </ClCompile>
     <ClCompile Include="secondLrRectangle.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>LR2V</Filter>
     </ClCompile>
     <ClCompile Include="CelestialBody.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>LR3</Filter>
     </ClCompile>
     <ClCompile Include="CelestialSystem.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="thirdLrVar6.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>LR3</Filter>
     </ClCompile>
     <ClCompile Include="SkyMap.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>LR3</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdLrVar6.cpp">
+      <Filter>LR3</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="File.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="tests.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Rectangle.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Point2D.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="CelestialBody.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="CelestialSystem.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="SkyMap.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="console_init.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="File.h">
+      <Filter>LR2S</Filter>
+    </ClInclude>
+    <ClInclude Include="Point2D.h">
+      <Filter>LR2V</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>LR2V</Filter>
+    </ClInclude>
+    <ClInclude Include="CelestialBody.h">
+      <Filter>LR3</Filter>
+    </ClInclude>
+    <ClInclude Include="CelestialSystem.h">
+      <Filter>LR3</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyMap.h">
+      <Filter>LR3</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
